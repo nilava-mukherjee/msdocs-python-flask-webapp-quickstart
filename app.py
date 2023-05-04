@@ -1,22 +1,22 @@
 #import pandas as pd
-import datetime
-import mysql.connector
-import time
-import json
-import datetime
-from datetime import datetime, time, timedelta
+# import datetime
+# import mysql.connector
+# import time
+# import json
+# import datetime
+# from datetime import datetime, time, timedelta
 from flask import Flask, g, redirect, render_template, request, session, url_for, make_response, Response
-import os
+#import os
 
-Meter_id = "m1"
-print(Meter_id)
-meterID_H = "m1"
-print(meterID_H)
+# Meter_id = "m1"
+# print(Meter_id)
+# meterID_H = "m1"
+# print(meterID_H)
 
 
 # calculate the previous all day timestamp
-midnight = datetime.combine(datetime.today(), time.min)
-yesterday_midnight = midnight - timedelta(days=1)
+# midnight = datetime.combine(datetime.today(), time.min)
+# yesterday_midnight = midnight - timedelta(days=1)
 #print(f"from {yesterday_midnight.timestamp()}......to {midnight.timestamp()}")
 
 class User:
