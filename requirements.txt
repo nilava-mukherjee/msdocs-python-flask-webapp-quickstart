@@ -1,5 +1,4 @@
 Flask==2.2.2
 gunicorn
-mysql_connector_repackaged==0.3.1
 
 
