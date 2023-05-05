@@ -19,31 +19,31 @@ from flask import Flask, g, redirect, render_template, request, session, url_for
 # yesterday_midnight = midnight - timedelta(days=1)
 #print(f"from {yesterday_midnight.timestamp()}......to {midnight.timestamp()}")
 
-class User:
-    def __init__(self, id, username, password):
-        self.id = id
-        self.username = username
-        self.password = password
+# class User:
+#     def __init__(self, id, username, password):
+#         self.id = id
+#         self.username = username
+#         self.password = password
 
-    def __repr__(self):
-        return f'<User: {self.username}>'
+#     def __repr__(self):
+#         return f'<User: {self.username}>'
 
-users = [] #created a list for the username and password
-users.append(User(id=1, username='user1', password='pass1'))  #instead of this we can also take username password from db
-users.append(User(id=2, username='user2', password='pass2'))
-users.append(User(id=3, username='user3', password='pass3'))
+# users = [] #created a list for the username and password
+# users.append(User(id=1, username='user1', password='pass1'))  #instead of this we can also take username password from db
+# users.append(User(id=2, username='user2', password='pass2'))
+# users.append(User(id=3, username='user3', password='pass3'))
 
 app = Flask(__name__)
 #app.secret_key = os.urandom(24)
 
-@app.before_request
-def before_request():
-    g.user = None
+# @app.before_request
+# def before_request():
+#     g.user = None
 
-    if 'user_id' in session:
-        user = [x for x in users if x.id == session['user_id']][0]
-        g.user = user
-print("ok till 70")
+#     if 'user_id' in session:
+#         user = [x for x in users if x.id == session['user_id']][0]
+#         g.user = user
+# print("ok till 70")
 # @app.route('/data', methods =["GET", "POST"])
 # def data():
 
@@ -493,32 +493,32 @@ print("ok till 70")
 @app.route('/', methods=['GET', 'POST'])
 def login():
 
-    if request.method == 'POST':
-        print("right req")
-        session.pop('user_id',None)
+#     if request.method == 'POST':
+#         print("right req")
+#         session.pop('user_id',None)
 
-        username = request.form['username']
-        password = request.form['password']
+#         username = request.form['username']
+#         password = request.form['password']
 
-        print(users)
+#         print(users)
 
-        if len([x for x in users if x.username == username]) == 0:
-            print("wrong username")
-        else:
-            user = [x for x in users if x.username == username][0]
-            print(user)
-            if user and user.password == password:
-                session['user_id'] = user.id
-                return redirect(url_for('mapping'))
+#         if len([x for x in users if x.username == username]) == 0:
+#             print("wrong username")
+#         else:
+#             user = [x for x in users if x.username == username][0]
+#             print(user)
+#             if user and user.password == password:
+#                 session['user_id'] = user.id
+#                 return redirect(url_for('mapping'))
 
-            print("wrong password")
-            return redirect(url_for('login'))
+#             print("wrong password")
+#             return redirect(url_for('login'))
 
-    print("wrong req")
-    print(url_for('mapping'))
+#     print("wrong req")
+#     print(url_for('mapping'))
     return render_template('login.html')
 
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=5000, debug=True)
