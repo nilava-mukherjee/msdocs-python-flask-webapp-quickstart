@@ -34,7 +34,7 @@ users.append(User(id=2, username='user2', password='pass2'))
 users.append(User(id=3, username='user3', password='pass3'))
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+#app.secret_key = os.urandom(24)
 
 @app.before_request
 def before_request():
