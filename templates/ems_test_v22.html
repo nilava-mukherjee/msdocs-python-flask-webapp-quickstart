@@ -31,8 +31,9 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+	
 </head>
-<body>
+<body style="height: 1080px; width: 1920px">
     <!-- including navbar using jinja -->
     {% include 'navbar.html' %}
 
@@ -111,13 +112,40 @@
                 </div>
             </div>
         </div>
+		
         <div class="right">
-            <div class="buttons">
-                <div class="meterbox">
+			
+			
+			
+			 <div class="buttons"> 
+				  <div class="datime">
+						<div id="dateTime1">
+					 	 <script>
+      function displayDateTime() {
+        var dateTime = new Date();
+        var date = dateTime.toLocaleDateString();
+        var time = dateTime.toLocaleTimeString();
+        document.getElementById("dateTime1").innerHTML = " Date: " + date + " Time: " + time;
+      }
+      setInterval(displayDateTime, 1000);
+    </script></div>
+				 </div>
+				 <div class="meterbox">
                     <label for="MeterNo.">Select Meter No.:</label>
                     <form method="post" action="/currentdata">
                         <select  id="Meter_id" name="meter_id" type="text" placeholder ="Please select a meter">
-                            <option disabled selected style>Select a meter</option>
+                             <option disabled selected style>Select a meter</option>
+                            <option value="GMBS C03_10D">GMBS C03_10D</option>
+                            <option value="GMBS C05_08D">GMBS C05_08D</option>
+                            <option value="GMBS C06_09D">GMBS C06_09D</option>
+                            <option value="GMBS C08_16D">GMBS C08_16D</option>
+                            <option value="GMBS C09_13D">GMBS C09_13D</option>
+                            <option value="GMBS C18_14D">GMBS C18_14D</option>
+                            <option value="GMBS C19_17D">GMBS C19_17D</option>
+                            <option value="GMBS C20_18D">GMBS C20_18D</option>
+                            <option value="GMBS C21_11D">GMBS C21_11D</option>
+                            <option value="GMBS C24_12D">GMBS C24_12D</option>
+                            <option value="GMBS C27_15D">GMBS C27_15D</option>
                             <option value="m1">Meter 1</option>
                             <option value="m2">Meter 2</option>
                             <option value="m3">Meter 3</option>
@@ -195,7 +223,7 @@
                                               <th>MeterID</th>
                                               <th>Modbus_time</th>
                                               <th>Average Voltage LL</th>
-                                              <th>Current_i1/th>
+                                              <th>Current_i1</th>
                                               <th>Frequency</th>
                                               <th>Total_harmonic_distortion</th>
                                               <th>Apparent_energy</th>
@@ -250,7 +278,65 @@
                     </div>
                 </div>           
             </div>
+			<br>
+			<br>
             <div class="graphs">
+				<div class="container-fluid">
+                    <!-- Example row of columns -->
+                    <div class="row">
+                        <div class="chart-wrapper">
+							<div id="chartContainer" style="height: 370px; width: 1285px; margin: 0px auto;">
+	<div class="canvasjs-chart-container" style="position: relative; text-align: left; cursor: auto; direction: ltr;">
+		<canvas class="canvasjs-chart-canvas" width="1150" height="462" style="width: 920px; height: 370px; position: absolute; user-select: none;"></canvas>
+		<canvas class="canvasjs-chart-canvas" width="1150" height="462" style="width: 920px; height: 370px; position: absolute; -webkit-tap-highlight-color: transparent; user-select: none; cursor: default;"></canvas>
+		<div class="canvasjs-chart-toolbar" style="position: absolute; right: 1px; top: 1px; border: 1px solid transparent;">
+			<button state="pan" type="button" title="Pan" style="display: none; background-color: white; color: black; border-top: none; border-right: 1px solid rgb(33, 150, 243); border-bottom: none; border-left: none; border-image: initial; user-select: none; padding: 5px 12px; cursor: pointer; float: left; width: 40px; height: 25px; outline: 0px; vertical-align: baseline; line-height: 0; transition: all 0.4s ease 0s;">
+				<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAICSURBVEhLxZbPahNRGMUn/5MpuAiBEAIufQGfzr5E40YptBXajYzudCEuGqS+gGlrFwquDGRTutBdYfydzJ3LzeQmJGZue+Dw/Z17Mnfmu5Pof9Hr9Z61Wq0bWZMKj263O6xWq99wU9lOpzPMKgEhEcRucNOcioOK+0RzBhNvt9tPV4nmVF19+OWhVqt9xXgFXZq+8lCv119UKpUJ7iX2FmvFTKz8RH34YdBsNk8wVtjE4fGYwm8wrrDi3WBG5oKXZGRSS9hGuNFojLTe2lFz5xThWZIktayyiE2FdT3rzXBXz7krKiL8c17wAKFDjCus2AvW+YGZ9y2JF0VFRuMPfI//rsCE/C+s26s4gQu9ul7r4NteKx7H8XOC724xNNGbaNu++IrBqbOV7Tj3FgMRvc/YKOr3+3sE47wgEt/Bl/gaK5cHbNU11vYSXylfpK7XOvjuumPp4Wcoipu30Qsez2uMXYz4lfI+mOmwothY+SLiXJy7mKVpWs3Si0CoOMfeI9Od43Wic+jO+ZVv+crsm9QSNhUW9LXSeoPBYLXopthGuFQgdIxxhY+UDwlt1x5CZ1hX+NTUdt/OIvjKaDSmuOJfaIVNPKX+W18j/PLA2/kR44p5Sd8HbHngT/yTfNRWUXX14ZcL3wmX0+TLf8YO7CGT8yFE5zB3/gney25/OETRP9CtPDFe5jShAAAAAElFTkSuQmCC" alt="Pan" style="height: 95%; pointer-events: none;">
+			</button>
+			<button state="reset" type="button" title="Reset" style="display: none; background-color: white; color: black; border-top: none; border-right: 1px solid rgb(33, 150, 243); border-bottom: none; border-left: none; border-image: initial; user-select: none; padding: 5px 12px; cursor: pointer; float: left; width: 40px; height: 25px; outline: 0px; vertical-align: baseline; line-height: 0; transition: all 0.4s ease 0s;">
+				<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAeCAYAAABJ/8wUAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPjSURBVFhHxVdJaFNRFP1J/jwkP5MxsbaC1WJEglSxOFAXIsFpVRE3ggi1K90obioRRBA33XXnQnciirhQcMCdorgQxBkXWlREkFKsWkv5npvckp/XnzRpKh64kLw733fffe9L/wrL0+mVUdO8uTSZ3MBL/we2qg4rkuSpodCELstXE46ziVkLQ6FQcGOmeSSq6wd4aV50d3drWjj8kQKZJTUc9kxFGenv79dZrDksTSTWWJp2QYtEPiErysyzdX0LsxsCQR8keX8gs6RHIk8ysdgKFg2G53mhuOPsshTlBjKaFo1g7SqLNoShKLdFXT8huQ/paLSbxatYnc2mHMM4hr18Vi8TIvCmXF3vYrW6cF23gGTOk0M1wA4RKvOmq6vLZRVJipvmSWT6tZ6CSEYkco5V50VPT4+D7RwOqi6RiSZm0fJ+vggSqkeoypdsNmuyelNwbXsbgvkWYMtzDWNvWaijoyOBqE+hVK8abcssUeXQ/YfKyi0gFYv1Ipgfoj34fYGTJLOYJA0ODirok32GLN8XhUWCwSes1hIwBg6LydJ/tEeRRapAdUp+wSAiZchtZZWWgAZ+JNpD8peYXQVK9UwUxNpzOK8pq97kURZhYTCKBwPD7h2zK+js7Myi7D8Fod+0TkMI8+EMAngLGc/WtBFWawkFHFnoj/t9KLgGmF0B3QfkxC+EarxkdhnFYlFLY06USqUwL7UMjICHfh/wOc2sCqhpxGbCkLvL7EUDbF73+6DkmVWB6zi7xUDQSLeYvWjAILvm9zEnkJhlbRcDQZcv6Kg2AipyT/Axw6wKlqVSqxDdjF8Izfod13qURdrG/nxehY+xGh+h0CSzKygGvSNQIcc097BI24jb9hax6kj2E7OrMFX1il+ICEf2NrPbhiXLl+fYl+U7zK4iYdsDcyLGf+ofFlkwcN+s10KhmpuYhhtm0hCLVIFL0MDsqNlDIqy9x2CLs1jL6OvrI7vPRbtohXG6eFmsFnHDGAp6n9AgyuVySRZrGvROxRgIfLXhzjrNYnNBUxNX/dMgRWT1mt4XLDovaApD53E9W3ilNX5M55LJHpRtIsgAvciR4WWcgK2Dvb1YqgXevmF8z2zEBTcKG39EfSKsT9EbhVUaI2FZO+oZIqImxol6j66/hcAu4sSN4vc1ZPoKeoE6RGhYL2YYA+ymOSSi0Z0wWntbtkGUWCvfSDXIxONraZ/FY90KUfNTpfC5spnNLgxoYNnR9RO4F8ofXEHOgogCQE99w+fF2Xw+b7O59rEOsyRqGEfpVoaDMQQ1CZrG46bcM6AZ0C/wPqNfHliqejyTySxh9TqQpL+xmbIlkB9SlAAAAABJRU5ErkJggg==" alt="Reset" style="height: 95%; pointer-events: none; filter: invert(0%);">
+			</button>
+		</div>
+		<div class="canvasjs-chart-tooltip" style="position: absolute; height: auto; box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 2px 2px; z-index: 1000; pointer-events: none; display: none; border-radius: 0px; left: 669px; bottom: -177px; transition: left 0.1s ease-out 0s, bottom 0.1s ease-out 0s;">
+			<div style="width: auto; height: auto; min-width: 50px; line-height: normal; margin: 0px; padding: 5px; font-family: &quot;Trebuchet MS&quot;, Helvetica, sans-serif; font-weight: normal; font-style: normal; font-size: 14px; color: black; text-shadow: rgba(0, 0, 0, 0.1) 1px 1px 1px; text-align: left; border: 1px solid rgb(79, 129, 188); background: rgba(255, 255, 255, 0.9); text-indent: 0px; white-space: nowrap; border-radius: 0px; user-select: none;">
+				09:41:12 AM<br>
+				<span data-color="#4F81BC" style="color: rgb(79, 129, 188);">Average Voltage LL:</span>
+				&nbsp;&nbsp;-4.83
+				<br>
+				<span data-color="#C0504E" style="color: rgb(192, 80, 78);">Current_i1:</span>
+				&nbsp;&nbsp;-4.54
+				<br>
+				<span data-color="#9BBB58" style="color: rgb(155, 187, 88);">Frequency:</span>
+				&nbsp;&nbsp;15.63
+				<br><span data-color="#23BFAA" style="color: rgb(35, 191, 170);">Total Harmonic Distortion:</span>
+				&nbsp;&nbsp;19.36
+				<br>
+				<span data-color="saddlebrown" style="color: saddlebrown;">Apparent Energy:</span>
+				&nbsp;&nbsp;16.05
+				<br>
+				<span data-color="#4AACC5" style="color: rgb(74, 172, 197);">Power Factor:</span>
+				&nbsp;&nbsp;13.25
+				<br>
+				<span data-color="#F79647" style="color: rgb(247, 150, 71);">Energy:</span>
+				&nbsp;&nbsp;2.70
+				<br><span data-color="#7F6084" style="color: rgb(127, 96, 132);">Power:</span>
+				&nbsp;&nbsp;12.65
+				<br>
+				<span data-color="#77A033" style="color: rgb(119, 160, 51);">Apparent Power:</span>
+				&nbsp;&nbsp;28.75
+			</div>
+		</div>
+	<!--	<a class="canvasjs-chart-credit" title="JavaScript Charts" tabindex="-1" target="_blank" href="{{ url_for('mapping') }}" style="outline: none; margin: 0px; position: absolute; right: 2px; top: 356px; color: dimgrey; text-decoration: none; font-size: 11px; font-family: Calibri, &quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, sans-serif;">Home</a>-->
+	</div>
+	</div>
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+                
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <br>
                 <div class="container-fluid">
                     <!-- Example row of columns -->
                     <div class="row">
@@ -431,14 +517,14 @@
                             // Add the Point
                             // Time a\
                             var data1 = [];
-                            data1.push(result);
+                            data1.push(result[0]);
                             data1.push(result[1]);
             
             
                             // Add the Point
                             // Time b
                             var data2 = [];
-                            data2.push(result);
+                            data2.push(result[0]);
                             data2.push(result[2]);
             
             
@@ -508,37 +594,37 @@
             
     
                             
-                            $(".sensor1").text("");
+                           // $(".sensor1").text("");
                             $(".sensor1").text("Average Voltage LL : " +  data1[1] );
             
-                            $(".sensor2").text("");
+                           // $(".sensor2").text("");
                             $(".sensor2").text("Average Current : " +  data2[1] );
             
-                            $(".sensor3").text("");
+                           // $(".sensor3").text("");
                             $(".sensor3").text("Frequency : " + data3[1] );
                             
-                            $(".sensor5").text("");
+                           // $(".sensor5").text("");
                             $(".sensor5").text("Average Power Factor : " +  data5[1]);
     
-                            $(".sensor6").text("");
+                            //$(".sensor6").text("");
                             $(".sensor6").text("Active Power : " +  data6[1]);
             
-                            $(".sensor7").text("");
+                          //  $(".sensor7").text("");
                             $(".sensor7").text("Active Energy : " +  data7[1]);
                             
-                            $(".sensor8").text("");
+                           // $(".sensor8").text("");
                             $(".sensor8").text("Apparent Power : " +  data8[1]);
                             
-                            $(".sensor9").text("");
+                           // $(".sensor9").text("");
                             $(".sensor9").text("Apparent Energy : " +  data9[1]);
     
-                            $(".sensor4").text("");
+                            //$(".sensor4").text("");
                             $(".sensor4").text("Total Harmonic Distortion : " +  data10[1]);
     
-                            $(".sensor10").text("");
+                           // $(".sensor10").text("");
                             $(".sensor10").text("Meter ID : " +  data4[1]);
     
-                            $(".sensor11").text("");
+                           // $(".sensor11").text("");
                             $(".sensor11").text("Meter location : " +  dataloc[1]);
                             
                             // call it again after one second
@@ -876,7 +962,218 @@
                             }]
                         }); 
                     });
-                </script>
+window.onload = function () {
+
+var dataPoints1 = [];
+var dataPoints2 = [];
+var dataPoints3 =[];
+var dataPoints4 = [];
+var dataPoints5 = [];
+var dataPoints6 =[];
+var dataPoints7 =[];
+var dataPoints8 =[];
+var dataPoints9 =[];
+var chart = new CanvasJS.Chart("chartContainer", {
+	zoomEnabled: true,
+	title: {
+		text: "Cumulative Graph"
+	},
+	axisX: {
+		title: "Data(/s)"
+	},
+	axisY:{
+		//prefix: "$"
+	}, 
+	toolTip: {
+		shared: true
+	},
+	legend: {
+		cursor:"pointer",
+		verticalAlign: "top",
+		fontSize: 12,
+		fontColor: "dimGrey",
+		itemclick : toggleDataSeries
+	},
+	data: [
+		{ 
+		type: "line",
+		xValueType: "dateTime",
+		yValueFormatString: "####.00",
+		xValueFormatString: "hh:mm:ss TT",
+		showInLegend: true,
+		name: "Average Voltage LL",
+		dataPoints: dataPoints1
+	
+		},
+		{ 
+		type: "line",
+		xValueType: "dateTime",
+		yValueFormatString: "####.00",
+		xValueFormatString: "hh:mm:ss TT",
+		showInLegend: true,
+		name: "Current_i1",
+		dataPoints: dataPoints2
+	
+		},
+		{				
+			type: "line",
+			xValueType: "dateTime",
+			yValueFormatString: "####.00",
+			showInLegend: true,
+			name: "Frequency" ,
+			dataPoints: dataPoints3
+	},
+	{				
+			type: "line",
+			xValueType: "dateTime",
+			yValueFormatString: "####.00",
+			showInLegend: true,
+			name: "Total Harmonic Distortion" ,
+			dataPoints: dataPoints4
+	},
+	{				
+			type: "line",
+			xValueType: "dateTime",
+			yValueFormatString: "####.00",
+			showInLegend: true,
+			name: "Apparent Energy" ,
+			dataPoints: dataPoints5
+	},
+	{				
+			type: "line",
+			xValueType: "dateTime",
+			yValueFormatString: "####.00",
+			showInLegend: true,
+			name: "Power Factor" ,
+			dataPoints: dataPoints6
+	}
+	,
+	{				
+			type: "line",
+		    xValueType: "dateTime",
+			yValueFormatString: "####.00",
+			showInLegend: true,
+			name: "Energy" ,
+			dataPoints: dataPoints7
+	}
+	,
+	{				
+			type: "line",
+			xValueType: "dateTime",
+			yValueFormatString: "####.00",
+			showInLegend: true,
+			name: "Power" ,
+			dataPoints: dataPoints8
+	}
+	,
+	{				
+			type: "line",
+			xValueType: "dateTime",
+			yValueFormatString: "####.00",
+			showInLegend: true,
+			name: "Apparent Power" ,
+			dataPoints: dataPoints9
+	}]
+});
+
+function toggleDataSeries(e) {
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	}
+	else {
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
+var updateInterval = 1000;
+// initial value
+var yValue1 = 1; // data1[1];
+var yValue2 = 2; // data2[1];
+var yValue3 = 5; // data3[1];
+var yValue4 = 10; // data5[1];
+var yValue5 = 17; // data6[1];
+var yValue6 = 25; // data7[1];
+var yValue7 = 6;  // data8[1];
+var yValue8 = 10; // data9[1];
+var yValue9 = 25; // data10[1];
+
+var time = new Date;
+
+
+
+function updateChart(count) {
+	count = count || 1;
+	var deltaY1, deltaY2, deltaY3, deltaY4, deltaY5, deltaY6, deltaY7, deltaY8, deltaY9;
+	for (var i = 0; i < count; i++) {
+		time.setTime(time.getTime()+ updateInterval);
+		
+
+	// adding random value and rounding it to two digits. 
+	yValue1 = Math.round((yValue1)*100)/100;
+	yValue2 = Math.round((yValue2)*100)/100;
+    yValue3 = Math.round((yValue3)*100)/100;
+	yValue4 = Math.round((yValue4)*100)/100;
+	yValue5 = Math.round((yValue5)*100)/100;
+    yValue6 = Math.round((yValue6)*100)/100;
+    yValue7 = Math.round((yValue7)*100)/100;
+	yValue8 = Math.round((yValue8)*100)/100;
+    yValue9 = Math.round((yValue9)*100)/100;
+
+
+
+	// pushing the new values
+	dataPoints1.push({
+		x: time.getTime(),//data1[0];
+		y: yValue1
+	});
+	dataPoints2.push({
+		x: time.getTime(),//data2[0];
+		y: yValue2
+	});
+		dataPoints3.push({
+		x: time.getTime(),//data3[0];
+		y: yValue3
+	});
+		dataPoints4.push({
+		x: time.getTime(),//data5[0];
+		y: yValue4
+	});
+		dataPoints5.push({
+		x: time.getTime(),//data6[0];
+		y: yValue5
+	});
+		dataPoints6.push({
+		x: time.getTime(),//data7[0];
+		y: yValue6
+	});
+		dataPoints7.push({
+		x: time.getTime(),//data8[0];
+		y: yValue7
+	});
+		dataPoints8.push({
+		x: time.getTime(),//data9[0];
+		y: yValue8
+	});
+		dataPoints9.push({
+		x: time.getTime(),//data10[0];
+		y: yValue9
+	});
+	}
+
+	// updating legend text with  updated with y Value 
+	//chart.options.data[0].legendText = " Company A  $" + yValue1;
+	//chart.options.data[1].legendText = " Company B  $" + yValue2;
+	
+chart.render();
+}
+// generates first set of dataPoints 
+updateChart(100);	
+setInterval(function(){updateChart()}, updateInterval);
+
+}
+</script>
+				
             
             </div>
         </div>
@@ -993,6 +1290,7 @@ body{
 	text-align: center;
 	border-radius: 5px;
 	font-size: 20px;
+	margin-top: 10px;
 }
 .buttons a:hover {
 	background: #00729D;
@@ -1014,9 +1312,13 @@ body{
 .buttons .a:hover {
 	background: #00729D;
 }
+	.datime{
+    position:absolute;
+		right: 30px;}
 .btns{
     position:absolute;
-    right: 20px;
+    right: 45px;
+	top: 30px;
 }
 .modal {
   display: none; /* Hidden by default */
@@ -1098,5 +1400,6 @@ body{
     overflow: auto;
     overflow-y: scroll;
 }
+
 </style>
 </html>
