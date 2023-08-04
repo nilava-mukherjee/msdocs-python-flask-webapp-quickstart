@@ -212,7 +212,7 @@ def currentdata():
 
     print("session valid")
     global Meter_id
-    Meter_id = request.form.get("Meter_id")
+    Meter_id = request.form.get("meter_id")
     print(Meter_id)
     print(type(Meter_id))
 
