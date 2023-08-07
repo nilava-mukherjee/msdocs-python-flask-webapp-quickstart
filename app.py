@@ -356,7 +356,7 @@ def currentdata():
         print("Something went wrong: {}".format(err))
     response4 = make_response(json.dumps(data8))
     response4.content_type = 'application/json'
-    return render_template('ems_test_v22_updated.html', data1=(r_val), data2=(data8))
+    return render_template('ems_test_v22.html', data1=(r_val), data2=(data8))
 
 
 @app.route("/getPlotCSV")
@@ -608,7 +608,7 @@ def current_data():
     response4 = make_response(json.dumps(5))
     response4.content_type = 'application/json'
 
-    return render_template('ems_test_v22_updated.html', data1=(t2_val), data2=(data8))
+    return render_template('ems_test_v22.html', data1=(t2_val), data2=(data8))
 
 
 @app.route("/mapping")
@@ -934,7 +934,7 @@ def currentdata():
         print("Something went wrong: {}".format(err))
     response4 = make_response(json.dumps(data8))
     response4.content_type = 'application/json'
-    return render_template('ems_test_v22_updated.html', data1=(r_val), data2=(data8))
+    return render_template('ems_test_v22.html', data1=(r_val), data2=(data8))
 
 
 @app.route("/getPlotCSV")
