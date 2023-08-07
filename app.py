@@ -289,9 +289,7 @@ def currentdata():
         db2.commit()
         db2.close()
         print(data7)
-        r_values = pd.DataFrame(data7, columns=['time_stamp', 'voltage', 'current','total_harmonic_distortion',
-                                                 'apparent_energy', 'power_factor',
-                                                'energy', 'power', 'apparent_power','frequency','power_factor_1','Current_i1','Current_i2','Current_i3','tstmp'])
+        r_values = pd.DataFrame(data7, columns=['time_stamp', 'voltage', 'current','total_harmonic_distortion','apparent_energy', 'power_factor','energy', 'power', 'apparent_power','frequency','power_factor_1','Current_i1','Current_i2','Current_i3','tstmp'])
 
         r_val = ((r_values).values.tolist())
         print(r_val)
