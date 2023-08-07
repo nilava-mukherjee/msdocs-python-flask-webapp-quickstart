@@ -467,11 +467,17 @@
                     var charti;
                     var chartj;
                     var chartloc;
+					var data2 = []; //avg current
+				    var dataloc2 = []; //i1
+					var dataloc3 = []; //i2
+					var dataloc4 = []; //i3
+					var x = []; //tst
             
                     function requestData()
                     {
                         // Ajax call to get the Data from Flask
                         var requests = $.get('/data');
+						
             
                         var tm = requests.done(function (result)
                         {
@@ -519,11 +525,13 @@
                             var data1 = [];
                             data1.push(result[0]);
                             data1.push(result[1]);
+							console.log("generation of data1");
+							console.log(result);
             
             
                             // Add the Point
                             // Time b
-                            var data2 = [];
+                            data2 = [];
                             data2.push(result[0]);
                             data2.push(result[2]);
             
@@ -562,7 +570,7 @@
     
                             //Add the Point
                             // Time h
-                            var data8 = [];
+                           var data8 = [];
                             data8.push(result[0]);
                             data8.push(result[8]);
     
@@ -578,9 +586,26 @@
                             data10.push(result[10]);
     
                              // Time loc
-                             var dataloc = [];
+                            var dataloc = [];
                             dataloc.push(result[0]);
                             dataloc.push(result[11]);
+							
+							dataloc2 = [];
+							dataloc2.push(result[0]);
+                            dataloc2.push(result[12]);
+							
+							dataloc3 = [];
+							dataloc3.push(result[0]);
+                            dataloc3.push(result[13]);
+							
+							dataloc4 = [];
+							dataloc4.push(result[0]);
+                            dataloc4.push(result[14]);
+							
+							x=[];
+							x.push(result[15]);
+							console.log(result[15]);
+							console.log(x);
             
                             charta.series[0].addPoint(data1, true, shifta);
                             chartb.series[0].addPoint(data2, true, shiftb);
@@ -628,7 +653,7 @@
                             $(".sensor11").text("Meter location : " +  dataloc[1]);
                             
                             // call it again after one second
-                            setTimeout(requestData, 60000);
+                            setTimeout(requestData, 50000);
             
                         });
                     }
@@ -963,16 +988,13 @@
                         }); 
                     });
 window.onload = function () {
+	//console.log(data1)
 
 var dataPoints1 = [];
 var dataPoints2 = [];
 var dataPoints3 =[];
 var dataPoints4 = [];
-var dataPoints5 = [];
-var dataPoints6 =[];
-var dataPoints7 =[];
-var dataPoints8 =[];
-var dataPoints9 =[];
+
 var chart = new CanvasJS.Chart("chartContainer", {
 	zoomEnabled: true,
 	title: {
@@ -999,9 +1021,9 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		type: "line",
 		xValueType: "dateTime",
 		yValueFormatString: "####.00",
-		xValueFormatString: "hh:mm:ss TT",
+		
 		showInLegend: true,
-		name: "Average Voltage LL",
+		name: "Average Current LL",
 		dataPoints: dataPoints1
 	
 		},
@@ -1009,7 +1031,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		type: "line",
 		xValueType: "dateTime",
 		yValueFormatString: "####.00",
-		xValueFormatString: "hh:mm:ss TT",
+	    
 		showInLegend: true,
 		name: "Current_i1",
 		dataPoints: dataPoints2
@@ -1019,60 +1041,19 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			type: "line",
 			xValueType: "dateTime",
 			yValueFormatString: "####.00",
+			
 			showInLegend: true,
-			name: "Frequency" ,
+			name: "Current_i2" ,
 			dataPoints: dataPoints3
 	},
 	{				
 			type: "line",
 			xValueType: "dateTime",
 			yValueFormatString: "####.00",
+		    
 			showInLegend: true,
-			name: "Total Harmonic Distortion" ,
+			name: "Current_i3" ,
 			dataPoints: dataPoints4
-	},
-	{				
-			type: "line",
-			xValueType: "dateTime",
-			yValueFormatString: "####.00",
-			showInLegend: true,
-			name: "Apparent Energy" ,
-			dataPoints: dataPoints5
-	},
-	{				
-			type: "line",
-			xValueType: "dateTime",
-			yValueFormatString: "####.00",
-			showInLegend: true,
-			name: "Power Factor" ,
-			dataPoints: dataPoints6
-	}
-	,
-	{				
-			type: "line",
-		    xValueType: "dateTime",
-			yValueFormatString: "####.00",
-			showInLegend: true,
-			name: "Energy" ,
-			dataPoints: dataPoints7
-	}
-	,
-	{				
-			type: "line",
-			xValueType: "dateTime",
-			yValueFormatString: "####.00",
-			showInLegend: true,
-			name: "Power" ,
-			dataPoints: dataPoints8
-	}
-	,
-	{				
-			type: "line",
-			xValueType: "dateTime",
-			yValueFormatString: "####.00",
-			showInLegend: true,
-			name: "Apparent Power" ,
-			dataPoints: dataPoints9
 	}]
 });
 
@@ -1086,79 +1067,66 @@ function toggleDataSeries(e) {
 	chart.render();
 }
 
-var updateInterval = 1000;
+var updateInterval = 50000;
 // initial value
-var yValue1 = 1; // data1[1];
-var yValue2 = 2; // data2[1];
-var yValue3 = 5; // data3[1];
-var yValue4 = 10; // data5[1];
-var yValue5 = 17; // data6[1];
-var yValue6 = 25; // data7[1];
-var yValue7 = 6;  // data8[1];
-var yValue8 = 10; // data9[1];
-var yValue9 = 25; // data10[1];
-
-var time = new Date;
+/*var yValue1 =data1[1];
+var yValue2 = data2[1];
+var yValue3 = data3[1];
+var yValue4 = data5[1];
+var yValue5 = data6[1];
+var yValue6 = data7[1];
+var yValue7 = data8[1];
+var yValue8 = data9[1];
+var yValue9 = data10[1];*/
 
 
 
 function updateChart(count) {
 	count = count || 1;
-	var deltaY1, deltaY2, deltaY3, deltaY4, deltaY5, deltaY6, deltaY7, deltaY8, deltaY9;
+	//var deltaY1, deltaY2, deltaY3, deltaY4, deltaY5, deltaY6, deltaY7, deltaY8, deltaY9;
 	for (var i = 0; i < count; i++) {
-		time.setTime(time.getTime()+ updateInterval);
+		var time = x[0];
+	
+var time1 = parseInt(time);
+console.log(time1);
+		var tm = time1;
 		
 
 	// adding random value and rounding it to two digits. 
-	yValue1 = Math.round((yValue1)*100)/100;
-	yValue2 = Math.round((yValue2)*100)/100;
-    yValue3 = Math.round((yValue3)*100)/100;
-	yValue4 = Math.round((yValue4)*100)/100;
-	yValue5 = Math.round((yValue5)*100)/100;
-    yValue6 = Math.round((yValue6)*100)/100;
-    yValue7 = Math.round((yValue7)*100)/100;
-	yValue8 = Math.round((yValue8)*100)/100;
-    yValue9 = Math.round((yValue9)*100)/100;
+	/*yValue1 = Math.round((yValue1)*100)/100;
+	//yValue2 = Math.round((yValue2)*100)/100;
+    //yValue3 = Math.round((yValue3)*100)/100;
+	/*yValue4 = ((yValue4)*100)/100;
+	yValue5 = ((yValue5)*100)/100;
+    yValue6 = ((yValue6)*100)/100;
+    yValue7 = ((yValue7)*100)/100;
+	yValue8 = ((yValue8)*100)/100;
+    yValue9 = ((yValue9)*100)/100;*/
 
+		console.log("data1");
+		console.log(tm);
+		console.log(time1);
 
 
 	// pushing the new values
 	dataPoints1.push({
-		x: time.getTime(),//data1[0];
-		y: yValue1
+		x: tm,//data1[0];
+		y: data2[1]
 	});
 	dataPoints2.push({
-		x: time.getTime(),//data2[0];
-		y: yValue2
+		x: tm,//data2[0];
+		y: dataloc2[1]
 	});
 		dataPoints3.push({
-		x: time.getTime(),//data3[0];
-		y: yValue3
+		x: tm,//data3[0];
+		y: dataloc3[1]
 	});
 		dataPoints4.push({
-		x: time.getTime(),//data5[0];
-		y: yValue4
+		x: tm,//data5[0];
+		y: dataloc4[1]
 	});
-		dataPoints5.push({
-		x: time.getTime(),//data6[0];
-		y: yValue5
-	});
-		dataPoints6.push({
-		x: time.getTime(),//data7[0];
-		y: yValue6
-	});
-		dataPoints7.push({
-		x: time.getTime(),//data8[0];
-		y: yValue7
-	});
-		dataPoints8.push({
-		x: time.getTime(),//data9[0];
-		y: yValue8
-	});
-		dataPoints9.push({
-		x: time.getTime(),//data10[0];
-		y: yValue9
-	});
+		
+		
 	}
 
 	// updating legend text with  updated with y Value 
@@ -1168,10 +1136,12 @@ function updateChart(count) {
 chart.render();
 }
 // generates first set of dataPoints 
-updateChart(100);	
+updateChart(1);	
 setInterval(function(){updateChart()}, updateInterval);
+	//setInterval(5000)
 
 }
+
 </script>
 				
             
