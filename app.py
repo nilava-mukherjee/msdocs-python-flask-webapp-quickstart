@@ -195,7 +195,7 @@ def data():
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
 
-        try:
+    try:
         db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
                                           host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                           port="3306")
