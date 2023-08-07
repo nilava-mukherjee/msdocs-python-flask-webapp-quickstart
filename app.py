@@ -269,7 +269,7 @@ def data():
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
 
-    meter_info = str(request.form.get("Meter_id"))
+    meter_info = str(request.form.get("meter_id"))
     # print(type(meter_info))
     data = [modbus_time, voltage_ll, avg_current, frequency, Meter_id, average_pf, net_power, net_energy, apparent_power,
             apparent_energy, THDP1, meter_info,Current_i1,Current_i2,Current_i3,timest]
