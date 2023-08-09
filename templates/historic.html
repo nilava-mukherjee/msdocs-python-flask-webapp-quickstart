@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Historic Data</title>
     
     <!--date_time picker -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
@@ -27,7 +27,7 @@
      {% include 'navbar.html' %}
 
 
-    <div class="historic">
+    
         <h1>Historic Data</h1>
         <div class="form_pick" style="gap: 20px;">
             <form method="post" action="/historicaldata" style="margin:10px; display:flex; gap:10px;">
@@ -39,9 +39,10 @@
                 $(function() {
                   $('input[name="daterange"]').daterangepicker({
                     timePicker: true,
-                    timePickerIncrement: 30,
+                    timePickerIncrement: 1,
+					timePicker24Hour: true,
                     locale: {
-                    format: 'MM/DD/YYYY h:mm A'
+                    format: 'DD/MM/YYYY hh:mm'
                     } 
                   });
                 });
@@ -51,27 +52,18 @@
               <div class="meterbox">
                 <label for="MeterNo.">Select Meter No. :</label>
                   <select class="meterid" id="meterid" name="Meter_id" type="text" placeholder ="Please select a meter">
-                    <option disabled selected>Select a meter</option>
-                    <option value="m1">Meter 1</option>
-                    <option value="m2">Meter 2</option>
-                    <option value="m3">Meter 3</option>
-                    <option value="m4">Meter 4</option>
-                    <option value="m1">Meter 5</option>
-                    <option value="m2">Meter 7</option>
-                    <option value="m3">Meter 8</option>
-                    <option value="m4">Meter 9</option>
-                    <option value="m1">Meter 10</option>
-                    <option value="m2">Meter 11</option>
-                    <option value="m3">Meter 12</option>
-                    <option value="m4">Meter 13</option>
-                    <option value="m1">Meter 14</option>
-                    <option value="m2">Meter 15</option>
-                    <option value="m3">Meter 16</option>
-                    <option value="m4">Meter 17</option>
-                    <option value="m1">Meter 18</option>
-                    <option value="m2">Meter 19</option>
-                    <option value="m3">Meter 20</option>
-                    <option value="m4">Meter 21</option>
+							<option disabled selected>Select a meter</option>
+							<option value="GMBS C03_10D">GMBS C03_10D</option>
+                            <option value="GMBS C05_08D">GMBS C05_08D</option>
+                            <option value="GMBS C06_09D">GMBS C06_09D</option>
+                            <option value="GMBS C08_16D">GMBS C08_16D</option>
+                            <option value="GMBS C09_13D">GMBS C09_13D</option>
+                            <option value="GMBS C18_14D">GMBS C18_14D</option>
+                            <option value="GMBS C19_17D">GMBS C19_17D</option>
+                            <option value="GMBS C20_18D">GMBS C20_18D</option>
+                            <option value="GMBS C21_11D">GMBS C21_11D</option>
+                            <option value="GMBS C24_12D">GMBS C24_12D</option>
+                            <option value="GMBS C27_15D">GMBS C27_15D</option>
                   </select>
               </div>
               <div class="submitbtn">
@@ -84,19 +76,22 @@
                 </a>
             </div>
         </div>
-        <div id="table">
+		
+        <div class="table">
             <table id="datatable" style="width: 100%">
                 <tr>
-                  <th>MeterID</th>
-                  <th>Time</th>
-                  <th>Average Voltage LL</th>
+                  <th>Modbus Time</th>
+				  <th>Average Voltage</th>
                   <th>Average Current</th>
-                  <th>Power Factor</th>
-                  <th>Active Power</th>
-                  <th>Active energy</th>
-                  <th>Apparent Power</th>
-                  <th>Apparent Energy</th>
-                  <th>Total Harmonic Distortion</th>
+				  <th>THDP1</th>
+                  <th>Total_KVA</th>
+                  <th>AVG_pf</th>
+                  <th>Total_net_kWh</th>
+                  <th>Total_kW</th>
+                  <th>Total_kVA</th>
+                  <th>Frequency</th>
+				  <th>pf1</th>
+				  <th>Timestamp</th>
 
                 </tr>
                 {% for row in data %}
@@ -109,16 +104,18 @@
               </table>
         </div>
 
-    </div>
+    
+		
 
     <br>
     <br>
     <br>
 
-      <div id="container"></div>
+      <div id="container">
     
 
 <script>
+	
 
 Highcharts.chart('container', {
 
@@ -138,7 +135,7 @@ Highcharts.chart('container', {
     
     xAxis: {
             type: 'datetime',
-            categories: {{ data0 }}
+            categories: {{ data0x }}
         },
     
     legend: {
@@ -156,47 +153,53 @@ Highcharts.chart('container', {
         }
     },
     series: [{
-        name: 'Average Voltage LL',
+        name: 'AVG_voltage_LL',
+        data: {{ data0 }},
+
+    },
+    {
+        name: 'AVG_current',
         data: {{ data1 }},
 
     },
     {
-        name: 'Current',
+        name: 'THDP1',
         data: {{ data2 }},
 
-    },
+    }
+				 ,
     {
-        name: 'Frequency',
+        name: 'Total_kVA',
         data: {{ data3 }},
 
     }, 
     {
-        name: 'Total_harmonic_distortion',
+        name: 'AVG_pf',
         data: {{ data4 }},
 
     },
     {
-        name: 'Apparent_energy',
+        name: 'Total_net_kWh',
         data: {{ data5 }},
 
     },
     {
-        name: 'Power_factor',
+        name: 'Total_kW',
         data: {{ data6 }},
 
     },
     {
-        name: 'Energy',
+        name: 'Total_kVA',
         data: {{ data7 }},
 
     },
     {
-        name: 'Power',
+        name: 'Frequency',
         data: {{ data8 }},
 
     },
-    {
-        name: 'Apparent_power',
+				 {
+        name: 'pf1',
         data: {{ data9 }},
 
     }],
@@ -217,6 +220,7 @@ Highcharts.chart('container', {
     }
 });
 </script>
+		  </div>
 </body>
 <style>
 body{
@@ -271,13 +275,14 @@ body{
   padding: 10px;
 
 }
+	
 #datatable{
-  height: 300px;
   overflow-y: scroll;
   overflow-x: scroll;
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+	
 }
 
 #datatable td, #datatable th {
@@ -297,6 +302,7 @@ body{
 }
 #container{
     margin-top: 20px;
+	position: relative;
 }
 </style>
 </html>
