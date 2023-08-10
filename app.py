@@ -355,19 +355,23 @@ def currentdata():
 
         db.commit()
         db.close()
+        if (data99 != []):
+            x_values_en = pd.DataFrame(data8)
+            print(x_values_en)
+            x_val_en = ((x_values_en.T).values.tolist())
+            y_en = (x_val_en[0][0])
 
-        x_values_en = pd.DataFrame(data8)
-        print(x_values_en)
-        x_val_en = ((x_values_en.T).values.tolist())
-        y_en = (x_val_en[0][0])
+            x_values_en_99 = pd.DataFrame(data99)
+            print(x_values_en_99)
+            x_val_en_99 = ((x_values_en_99.T).values.tolist())
+            y_en_99 = (x_val_en_99[0][0])
 
-        x_values_en_99 = pd.DataFrame(data99)
-        print(x_values_en_99)
-        x_val_en_99 = ((x_values_en_99.T).values.tolist())
-        y_en_99 = (x_val_en_99[0][0])
-
-        final_en = y_en_99-y_en
-        print(f"yesterday energy{final_en}")
+            final_en = y_en_99-y_en
+            print(f"yesterday energy{final_en}")
+        else:
+            final_en = 0
+        
+       
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     response4 = make_response(json.dumps(final_en))
@@ -707,6 +711,33 @@ def login():
     print("wrong req")
     print(url_for('mapping'))
     return render_template('login.html')
+    
+ @app.route('/logout', methods=['GET', 'POST'])
+ def logout():
+    if request.method == 'POST':
+        print("right req")
+        session.pop('user_id', None)
+
+        username = request.form['username']
+        password = request.form['password']
+
+        print(users)
+
+        if len([x for x in users if x.username == username]) == 0:
+            print("wrong username")
+        else:
+            user = [x for x in users if x.username == username][0]
+            print(user)
+            if user and user.password == password:
+                session['user_id'] = user.id
+                return redirect(url_for('mapping'))
+
+            print("wrong password")
+            return redirect(url_for('login'))
+
+    print("wrong req")
+    print(url_for('mapping'))
+    return render_template('login.html')   
 
 
 if __name__ == "__main__":
