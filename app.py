@@ -11,7 +11,7 @@ import os
 
 Meter_id = "GMBS C05_08D"
 print(Meter_id)
-meterID_H = "GMBS C05_08D"
+meterID_H = "m1"
 print(meterID_H)
 
 # calculate the previous all day timestamp
