@@ -11,7 +11,7 @@ import os
 
 Meter_id = "GMBS C05_08D"
 print(Meter_id)
-meterID_H = "m1"
+meterID_H = "GMBS C05_08D"
 print(meterID_H)
 
 # calculate the previous all day timestamp
@@ -241,20 +241,20 @@ def data():
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     try:
-            db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
                                           host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                           port="3306")
-            db2_cursor = db2.cursor()
-            db2_cursor.execute("SELECT Current_i2 from trialbsl WHERE Meter_id =%s", (Meter_id,))
-            data55 = db2_cursor.fetchall()
-            db2.commit()
-            db2.close()
-            x_values = pd.DataFrame(data55)
-            x_val = ((x_values.T).values.tolist())
-            Current_i2 = x_val[-1][-1]
-            print(Current_i2)
+        db2_cursor = db2.cursor()
+        db2_cursor.execute("SELECT Current_i2 from trialbsl WHERE Meter_id =%s", (Meter_id,))
+        data55 = db2_cursor.fetchall()
+        db2.commit()
+        db2.close()
+        x_values = pd.DataFrame(data55)
+        x_val = ((x_values.T).values.tolist())
+        Current_i2 = x_val[-1][-1]
+        print(Current_i2)
     except mysql.connector.Error as err:
-            print("Something went wrong: {}".format(err))
+        print("Something went wrong: {}".format(err))
     try:
         db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
                                       host="server050641860.mysql.database.azure.com", database="bokaro_ems",
@@ -304,7 +304,10 @@ def currentdata():
 
     print("session valid")
     global Meter_id
+
     Meter_id = request.form.get("meter_id")
+    if (Meter_id==None):
+        Meter_id="GMBS C05_08D"
     print(Meter_id)
     print(type(Meter_id))
 
@@ -351,8 +354,6 @@ def currentdata():
         db_cursor.execute("select Total_net_kWh from bokaro_ems.trialbsl where Meter_id = %s and timest between %s and %s",(Meter_id, str(int(midnight.timestamp() - 500)), str(int(midnight.timestamp() + 500)),))
         data99 = db_cursor.fetchall()
         print(data99)
-
-
         db.commit()
         db.close()
         if (data99 != []):
@@ -370,8 +371,6 @@ def currentdata():
             print(f"yesterday energy{final_en}")
         else:
             final_en = 0
-        
-       
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     response4 = make_response(json.dumps(final_en))
@@ -711,9 +710,10 @@ def login():
     print("wrong req")
     print(url_for('mapping'))
     return render_template('login.html')
-    
- @app.route('/logout', methods=['GET', 'POST'])
- def logout():
+
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
     if request.method == 'POST':
         print("right req")
         session.pop('user_id', None)
@@ -737,9 +737,9 @@ def login():
 
     print("wrong req")
     print(url_for('mapping'))
-    return render_template('login.html')   
+    return render_template('login.html')
+
 
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
-
