@@ -197,7 +197,7 @@
 
 
                         </select>    
-                        <input type="submit" value="Submit" style="margin-left: 10px;">
+                        <input type="submit" value="Submit" style="margin-left: 10px;"><div class="error"><h5><p id="demo"></p></h5></div>
                     </form>
                 </div>
                 <div class="btns">
@@ -1150,6 +1150,15 @@ setInterval(function(){updateChart()}, updateInterval);
 }
 
 </script>
+				<script>
+function myFunction() {
+	var x={{data2}};
+	if(x==0){
+  document.getElementById("demo").innerHTML = "No data is available for selected meter.";
+	}
+}
+myFunction();
+</script>
 				
             
             </div>
@@ -1378,6 +1387,11 @@ body{
     overflow-y: scroll;
 	padding: 20px;
 }
+	.error{
+		color: red;
+		
+		
+	}
 
 </style>
 </html>
