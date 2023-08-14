@@ -208,7 +208,8 @@
                     </div>
                     <div class="pop_up">
                             <!-- Trigger/Open The Modal -->
-                            <button id="myBtn" class="a">View Data</button>
+						<button id="myBtn" class="a">View Data</button>
+                            
                             <!-- The Modal -->
                             <div id="myModal" class="modal">
                                 <!-- Modal content -->
@@ -220,17 +221,21 @@
                                     <div class="modal-body">
                                         <table id="datatable" style="width: 100%">
                                             <tr>
-                                              <th>MeterID</th>
-                                              <th>Modbus_time</th>
-                                              <th>Average Voltage LL</th>
-                                              <th>Current_i1</th>
-                                              <th>Frequency</th>
-                                              <th>Total_harmonic_distortion</th>
-                                              <th>Apparent_energy</th>
-                                              <th>Power_factor</th>
+                                              <th>Modbus time</th>
+                                              <th>Average Voltage </th>
+                                              <th>Average Current </th>
+                                              <th>Total Harmonic Distortion</th>
+                                              <th>Apparent Energy</th>
+                                              <th>Power factor</th>
                                               <th>Energy</th>
                                               <th>Power</th>
-                                              <th>Apparent_power</th>
+                                              <th>Apparent Power</th>
+                                              <th>Frequency</th>
+											  <th>Power Factor 1</th>
+											  <th>Current_i1</th>
+											  <th>Current_i2</th>
+											  <th>Current_i3</th>
+											  <th>Tstmp</th>
                                       
                                             </tr>
                                             {{ data0 }}
@@ -1074,7 +1079,7 @@ function toggleDataSeries(e) {
 	chart.render();
 }
 
-var updateInterval = 50000;
+var updateInterval = 1000;
 // initial value
 /*var yValue1 =data1[1];
 var yValue2 = data2[1];
