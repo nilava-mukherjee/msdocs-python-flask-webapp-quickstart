@@ -7,12 +7,24 @@
     <title>Mapping page</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
+<body style="height:1080px; width:1920px">
 	
 		{% include 'navbar.html' %}
 	
-	<div class="body1">
-    <div class="main1">
+	<div class="body1" style="margin: 0;
+    padding: 0;
+    
+    display: flex;
+    justify-content: center;
+    
+    background-size: cover
+							  overflow: auto">
+    <div class="main1" style="border: solid black 1px;
+    min-width: 300px;
+    width: fit-content;
+    margin: 40px;
+    height: auto;
+    overflow: auto">
 		
         <div class="header" style="text-align: center;"><h1 style="font-size: medium;"> GMBS </h1></div>
         
@@ -64,7 +76,12 @@
 -->    
 </div>
     <div class="gap"> </div>
-    <div class="main2">
+    <div class="main2" style="border: solid black 1px;
+    min-width: 300px;
+    width: fit-content;
+    margin: 40px;
+    height: auto;
+    overflow: auto">
         <div class="header" style="text-align: center;"><h1 style="font-size: medium;"> MSDS </h1></div>
 
         <div class="meter 37"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="37"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER37</p></div></div>
@@ -92,38 +109,14 @@
     background-size: 100% 100%;
     background-image: url("/static/transmission2.jpg")   
 }
-.body1{
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    min-width: 800px;
-    background-size: cover;
-    
-}
+
 	.main{
     border: solid black 1px;
     
     }
-.main1{
-    border: solid black 1px;
-    min-width: 300px;
-    width: fit-content;
-    margin: 40px;
-    height: auto;
-    overflow: auto;
-    
-    
-}
+
 .main2{
-    border: solid black 1px;
-    min-width: 300px;
-    width: fit-content;
-    margin: 40px;
-    height: auto;
-    overflow: auto;
+    
     
 }
 .meter{
