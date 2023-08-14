@@ -13,10 +13,15 @@ Meter_id = "GMBS C05_08D"
 print(Meter_id)
 meterID_H = "GMBS C05_08D"
 print(meterID_H)
+start_time= 0
+end_time= 0
+st1= 0
+end1= 0
 
 # calculate the previous all day timestamp
 midnight = datetime.combine(datetime.today(), dt_tm.min)
 yesterday_midnight = midnight - timedelta(days=1)
+
 
 
 # print(f"from {yesterday_midnight.timestamp()}......to {midnight.timestamp()}")
@@ -60,235 +65,335 @@ def data():
     ok2 = "line72"
     print(ok2)
     print(Meter_id)
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT AVG_voltage_LL from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data2 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        d1_values = pd.DataFrame(data2)
-        d1_val = ((d1_values.T).values.tolist())
-        voltage_ll = d1_val[-1][-1]
-    #         print(voltage_ll)
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-        print("line92")
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT AVG_current from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data2 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        d2_values = pd.DataFrame(data2)
-        d2_val = ((d2_values.T).values.tolist())
-        avg_current = d2_val[-1][-1]
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Frequency from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data3 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        z_values = pd.DataFrame(data3)
-        z_val = ((z_values.T).values.tolist())
-        frequency = z_val[-1][-1]
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT THDP1 from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data4 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        a_values = pd.DataFrame(data4)
-        a_val = ((a_values.T).values.tolist())
-        THDP1 = a_val[-1][-1]
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Total_kVA from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data11 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        x_values = pd.DataFrame(data11)
-        x_val = ((x_values.T).values.tolist())
-        apparentlocation = x_val[-1][-1]
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT AVG_pf from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data12 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        x_values = pd.DataFrame(data12)
-        x_val = ((x_values.T).values.tolist())
-        average_pf = x_val[-1][-1]
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Total_kw from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data18 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        x_values = pd.DataFrame(data18)
-        x_val = ((x_values.T).values.tolist())
-        net_power = x_val[-1][-1]
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Total_net_kWh from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data19 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        x_values = pd.DataFrame(data19)
-        net_energy = x_val[-1][-1]
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Total_kVA from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data20 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        x_values = pd.DataFrame(data20)
-        x_val = ((x_values.T).values.tolist())
-        apparent_power = x_val[-1][-1]
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Total_net_kVAh from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data21 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        x_values = pd.DataFrame(data21)
-        x_val = ((x_values.T).values.tolist())
-        apparent_energy = x_val[-1][-1]
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Modbus_time from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data22 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        x_values = pd.DataFrame(data22)
-        x_val = ((x_values.T).values.tolist())
-        modbus_time = x_val[-1][-1]
-        print(f"modbustime {modbus_time}")
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
+    global st1
+    global end1
+    modbus_tm=0
+    voltage_ll=0
+    avg_current=0
+    frequency=0
+    average_pf=0
+    net_power=0
+    net_energy=0
+    apparent_power=0
+    apparent_energy=0
+    THDP1=0
+    meter_info=0
+    Current_i1=0
+    Current_i2=0
+    Current_i3=0
+    timest=0
+    st1= str(int(datetime.now().timestamp() - 1500))
+    end1= str(int(datetime.now().timestamp()))
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                   port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT AVG_voltage_LL from trialbsl WHERE Meter_id =%s  and timest between %s and %s",(Meter_id, st1,end1 ,))
+    #     data2 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     d1_values = pd.DataFrame(data2)
+    #     d1_val = ((d1_values.T).values.tolist())
+    #     voltage_ll = d1_val[-1][-1]
+    # #         print(voltage_ll)
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    #     print("line92")
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                   port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT AVG_current from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+    #     data2 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     d2_values = pd.DataFrame(data2)
+    #     d2_val = ((d2_values.T).values.tolist())
+    #     avg_current = d2_val[-1][-1]
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    #
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                   port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT Frequency from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+    #     data3 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     z_values = pd.DataFrame(data3)
+    #     z_val = ((z_values.T).values.tolist())
+    #     frequency = z_val[-1][-1]
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    #
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                   port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT THDP1 from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1800)), str(int(datetime.now().timestamp())),))
+    #     data4 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     a_values = pd.DataFrame(data4)
+    #     a_val = ((a_values.T).values.tolist())
+    #     THDP1 = a_val[-1][-1]
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    #
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                   port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT Total_kVA from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+    #     data11 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     x_values = pd.DataFrame(data11)
+    #     x_val = ((x_values.T).values.tolist())
+    #     apparentlocation = x_val[-1][-1]
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    #
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                   port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT AVG_pf from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+    #     data12 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     x_values = pd.DataFrame(data12)
+    #     x_val = ((x_values.T).values.tolist())
+    #     average_pf = x_val[-1][-1]
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    #
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                   port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT Total_kw from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+    #     data18 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     x_values = pd.DataFrame(data18)
+    #     x_val = ((x_values.T).values.tolist())
+    #     net_power = x_val[-1][-1]
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    #
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                   port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT Total_net_kWh from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+    #     data19 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     x_val = pd.DataFrame(data19)
+    #     net_energy = x_val[-1][-1]
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    #
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                   port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT Total_kVA from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+    #     data20 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     x_values = pd.DataFrame(data20)
+    #     x_val = ((x_values.T).values.tolist())
+    #     apparent_power = x_val[-1][-1]
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    #
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                   port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT Total_net_kVAh from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+    #     data21 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     x_values = pd.DataFrame(data21)
+    #     x_val = ((x_values.T).values.tolist())
+    #     apparent_energy = x_val[-1][-1]
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    #
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                   port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT Modbus_time from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+    #     data22 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     x_values = pd.DataFrame(data22)
+    #     x_val = ((x_values.T).values.tolist())
+    #     modbus_time = x_val[-1][-1]
+    #     print(f"modbustime {modbus_time}")
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                       host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                       port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT Current_i1 from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+    #     data54 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     x_values = pd.DataFrame(data54)
+    #     x_val = ((x_values.T).values.tolist())
+    #     Current_i1 = x_val[-1][-1]
+    #     print(Current_i1)
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                       host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                       port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT Current_i2 from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+    #     data55 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     x_values = pd.DataFrame(data55)
+    #     x_val = ((x_values.T).values.tolist())
+    #     Current_i2 = x_val[-1][-1]
+    #     print(Current_i2)
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
+    # try:
+    #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+    #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+    #                                   port="3306")
+    #     db2_cursor = db2.cursor()
+    #     db2_cursor.execute("SELECT Current_i3 from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+    #         (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+    #     data56 = db2_cursor.fetchall()
+    #     db2.commit()
+    #     db2.close()
+    #     x_values = pd.DataFrame(data56)
+    #     x_val = ((x_values.T).values.tolist())
+    #     Current_i3 = x_val[-1][-1]
+    #     print(Current_i3)
+    # except mysql.connector.Error as err:
+    #     print("Something went wrong: {}".format(err))
     try:
         db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
                                           host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                           port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Current_i1 from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data54 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        x_values = pd.DataFrame(data54)
-        x_val = ((x_values.T).values.tolist())
-        Current_i1 = x_val[-1][-1]
-        print(Current_i1)
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                          host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                          port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Current_i2 from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data55 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        x_values = pd.DataFrame(data55)
-        x_val = ((x_values.T).values.tolist())
-        Current_i2 = x_val[-1][-1]
-        print(Current_i2)
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Current_i3 from trialbsl WHERE Meter_id =%s", (Meter_id,))
-        data56 = db2_cursor.fetchall()
-        db2.commit()
-        db2.close()
-        x_values = pd.DataFrame(data56)
-        x_val = ((x_values.T).values.tolist())
-        Current_i3 = x_val[-1][-1]
-        print(Current_i3)
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-    try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                          host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                          port="3306")
-        db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT timest from trialbsl WHERE Meter_id =%s", (Meter_id,))
+        db2_cursor.execute("SELECT Modbus_time, AVG_voltage_LL, AVG_current, Frequency, AVG_pf, Total_kw, Total_net_kWh, Total_kVA, Total_net_kVAh, THDP1,Current_i1, Current_i2, Current_i3, timest from trialbsl  where Meter_id =%s order by dataid desc limit 1",(Meter_id,))
+
         data57 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
-        x_values = pd.DataFrame(data57)
-        x_val = ((x_values.T).values.tolist())
-        timest = x_val[-1][-1]
-        print(timest)
+        print(data57)
+        print(type(data57))
+        print(data57[0])
+        print(type(data57[0]))
+        print(data57[0][0])
+        print(type(data57[0][0]))
+        modbus_tm = (data57[0][0])
+        voltage_ll = (data57[0][1])
+        avg_current = (data57[0][2])
+        frequency = (data57[0][3])
+        average_pf = (data57[0][4])
+        net_power = (data57[0][5])
+        net_energy = (data57[0][6])
+        apparent_power = (data57[0][7])
+        apparent_energy = (data57[0][8])
+        THDP1 = (data57[0][9])
+        Current_i1 = (data57[0][10])
+        Current_i2 = (data57[0][11])
+        Current_i3 = (data57[0][12])
+        timest = (data57[0][13])
+
+        # x_values1 = pd.DataFrame(data57[0])
+        # x_val1 = ((x_values1.T).values.tolist())
+        # modbus_tm= print(data57[0][0])
+        # x_values2 = pd.DataFrame(data57[1])
+        # x_val2 = ((x_values2.T).values.tolist())
+        # voltage_ll = x_val2[-1][-1]
+        # x_values3 = pd.DataFrame(data57[2])
+        # x_val3 = ((x_values3.T).values.tolist())
+        # avg_current = x_val3[-1][-1]
+        # x_values4 = pd.DataFrame(data57[3])
+        # x_val4 = ((x_values4.T).values.tolist())
+        # frequency = x_val4[-1][-1]
+        # x_values5 = pd.DataFrame(data57[4])
+        # x_val5 = ((x_values5.T).values.tolist())
+        # average_pf = x_val5[-1][-1]
+        # x_values6 = pd.DataFrame(data57[4])
+        # x_val6 = ((x_values6.T).values.tolist())
+        # net_power = x_val6[-1][-1]
+        # x_values7 = pd.DataFrame(data57[6])
+        # x_val7 = ((x_values7.T).values.tolist())
+        # net_energy = x_val7[-1][-1]
+        # x_values8 = pd.DataFrame(data57[7])
+        # x_val8 = ((x_values8.T).values.tolist())
+        # apparent_power = x_val8[-1][-1]
+        # x_values9 = pd.DataFrame(data57[8])
+        # x_val9 = ((x_values9.T).values.tolist())
+        # apparent_energy = x_val9[-1][-1]
+        # x_values10 = pd.DataFrame(data57[9])
+        # x_val10 = ((x_values10.T).values.tolist())
+        # THDP1 = x_val10[-1][-1]
+        # x_values11 = pd.DataFrame(data57[10])
+        # x_val11 = ((x_values11.T).values.tolist())
+        # meter_info = x_val11[-1][-1]
+        # x_values12 = pd.DataFrame(data57[11])
+        # x_val12 = ((x_values12.T).values.tolist())
+        # Current_i1 = x_val12[-1][-1]
+        # x_values13 = pd.DataFrame(data57[12])
+        # x_val13 = ((x_values13.T).values.tolist())
+        # Current_i2 = x_val13[-1][-1]
+        # x_values14 = pd.DataFrame(data57[13])
+        # x_val14 = ((x_values14.T).values.tolist())
+        # Current_i3 = x_val14[-1][-1]
+        # x_values15 = pd.DataFrame(data57[14])
+        # x_val15 = ((x_values15.T).values.tolist())
+        # timest = x_val15[-1][-1]
+
+
+
+
+        print("line308")
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
 
     meter_info = str(request.form.get("meter_id"))
     # print(type(meter_info))
-    data = [modbus_time, voltage_ll, avg_current, frequency, Meter_id, average_pf, net_power, net_energy, apparent_power,
+    data = [modbus_tm, voltage_ll, avg_current, frequency, Meter_id, average_pf, net_power, net_energy, apparent_power,
             apparent_energy, THDP1, meter_info,Current_i1,Current_i2,Current_i3,timest]
     # data=[xx1(not used),average voltage,avg_current,frequency,xx2(thd),averagepf,activepower,activeenergy,apparentpower,apparent energy]
     response1 = make_response(json.dumps(data))
@@ -317,8 +422,8 @@ def currentdata():
                                       port="3306")
         db2_cursor = db2.cursor()
         db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL,AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1,Current_i1,Current_i2,Current_i3,timest from trialbsl WHERE Meter_id =%s",
-            (Meter_id,))
+            "SELECT Modbus_time,AVG_voltage_LL,AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1,Current_i1,Current_i2,Current_i3,timest from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+            (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
         data7 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
@@ -414,8 +519,8 @@ def getPlotCSV():
                                       port="3306")
         db2_cursor = db2.cursor()
         db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL,AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1  from trialbsl WHERE Meter_id =%s",
-            (Meter_id,))
+            "SELECT Modbus_time,AVG_voltage_LL,AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1  from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+            (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
         data18 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
@@ -476,6 +581,8 @@ def historical():
         return redirect(url_for('login'))
 
     print("session valid")
+    global start_time
+    global end_time
     global meterID_H
     meterID_H = request.form.get("Meter_id")
     print(meterID_H)
@@ -483,10 +590,10 @@ def historical():
 
     form_timestamp = [request.form.get("daterange")]
     print(form_timestamp)
-    print(type(form_timestamp[0]))
+    print((form_timestamp[0].split(" - ")))
 
-    start_time = str(int(tm.mktime(dtm.datetime.strptime(((form_timestamp[0].split(" - "))[0]), "%d/%m/%Y %H:%M").timetuple())))
-    end_time = str(int(tm.mktime(dtm.datetime.strptime(((form_timestamp[0].split(" - "))[1]), "%d/%m/%Y %H:%M").timetuple())))
+    start_time = str(int(tm.mktime(dtm.datetime.strptime(((form_timestamp[0].split(" - "))[0]), "%d/%m/%Y %H:%M").timetuple()))*1000)
+    end_time = str(int(tm.mktime(dtm.datetime.strptime(((form_timestamp[0].split(" - "))[1]), "%d/%m/%Y %H:%M").timetuple()))*1000)
 
     print (f"{start_time}  {end_time}")
     print(f"{type(start_time)}  {type(end_time)}")
@@ -500,6 +607,7 @@ def historical():
             "SELECT Modbus_time,AVG_voltage_LL, AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1,timest  from trialbsl WHERE Meter_id =%s and timest between %s and %s",
             (Meter_id,start_time,end_time,))
         data8 = db2_cursor.fetchall()
+        print(data8)
         db2.commit()
         db2.close()
         h_values = pd.DataFrame(data8, columns=['Modbus_time', 'AVG_voltage_LL', 'AVG_current','THDP1','Total_kVA','AVG_pf','Total_net_kWh','Total_kW','Total_kVA','Frequency','pf1',"timest"])
@@ -586,9 +694,14 @@ def historical():
 
 @app.route("/historicdwnld")
 def historicdwnld():
+    global start_time
+    global end_time
+    global meterID_H
+
     if not g.user:
         print("session not valid")
         return redirect(url_for('login'))
+
 
     print("session valid")
     try:
@@ -597,22 +710,18 @@ def historicdwnld():
                                       port="3306")
         db2_cursor = db2.cursor()
         db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL, AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1  from trialbsl WHERE Meter_id =%s",
-            (Meter_id,))
+            "SELECT Modbus_time,AVG_voltage_LL, AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1  from trialbsl WHERE Meter_id =%s and timest between %s and %s",(Meter_id,start_time,end_time))
         data5 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
-        t1_values = pd.DataFrame(data5, columns=['meterID', 'Modbus_time', 'AVG_voltage_LL', 'current', 'frequency',
-                                                 'total_harmonic_distortion', 'apparent_energy', 'power_factor',
-                                                 'energy', 'power', 'apparent_power'])
+        print(data5)
+        t1_values = pd.DataFrame(data5, columns=['Modbus_time','AVG_voltage_LL', 'AVG_current','THDP1','Total_kVA','AVG_pf','Total_net_kWh','Total_kW','Total_kVA','Frequency','pf1'])
         t1_val = ((t1_values.T).values.tolist())
         t1_value_c = t1_val[0][0]
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
         sensor_data_frame = pd.DataFrame(t1_val)
-        csv = t1_values.to_string(columns=['meterID', 'Modbus_time', 'AVG_voltage_LL', 'THDP1', 'frequency',
-                                           'total_harmonic_distortion', 'apparent_energy', 'power_factor',
-                                           'energy', 'power', 'apparent_power'], header='false', index='false')
+        csv = t1_values.to_string(columns=['Modbus_time','AVG_voltage_LL', 'AVG_current','THDP1','Total_kVA','AVG_pf','Total_net_kWh','Total_kW','Total_kVA','Frequency','pf1'], header='false', index='false')
 
     return Response(
         t1_values.to_csv(index=False),
@@ -712,6 +821,7 @@ def login():
     return render_template('login.html')
 
 
+
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     if request.method == 'POST':
@@ -743,3 +853,5 @@ def logout():
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
+
+
