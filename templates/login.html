@@ -7,26 +7,42 @@
   <title>Login</title>
 </head>
 
-<body>
-    <div class="container">
-        <form method="POST">
+<body style="height: 1080px; width: 1920px">
+	<center>
+<div class="logo">
+	<img src ="{{url_for('static', filename='saillogo.png')}}" alt="" height="150" width="150">
+	<br>
+	<img src ="{{url_for('static', filename='BSP.png')}}" alt="" width="20%">
+	</div>
+		</center>
+	<br>
+	<center>
+<div class="logo2">
+		<img src ="{{url_for('static', filename='emonitorlogo.png')}}" alt="" width="10%">
+	</div>
+		</center>
+	<br>
+   <center> <div class="container">
+        <form method="POST" style="">
             <label>Username : </label>   
             <input type="text" placeholder="Enter Username" name="username" required>  
             <label>Password : </label>   
             <input type="password" placeholder="Enter Password" name="password" required>  
             <button type="submit" value="submit" id="updateButton">Login</button>  
             <p>Contact Admin for login details</p>
-        </form>
+        </form><br><br><br><br><br><br><br><br>
+	  <br><br><br>
     </div>
+	<div ><table class="signature" align="right"><tr><td><h3>Developed</h3></td><td><h3>by:</h3></td><td><img src ="{{url_for('static', filename='armalogo.png')}}" alt="" width="80%"></td></tr></table>
+		
+	</div>
+	   </center>
 </body>
 <style>
 Body {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
-    background-image: url( {{ url_for('static', filename='transmission2.jpg') }} ) ;
-}
+	background-color: bisque;
+    
+        }
 button {   
     background-color: #00A9D4;   
     width: 100%;  
@@ -40,10 +56,7 @@ button {
 form {   
     border: 2px solid black;  
     width: 450px; 
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    
     padding: 10px;
 }
 input[type=text], input[type=password] {   
@@ -63,6 +76,10 @@ button:hover {
 p{
     color: red;
 }
+	.signature{
+		padding-left: 1600px;		
+	}
+	
 </style>
 
 </html>
