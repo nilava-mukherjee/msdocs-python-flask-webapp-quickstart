@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 	
 </head>
-<body style="height: 1080px; width: 1920px">
+<body>
     <!-- including navbar using jinja -->
     {% include 'navbar.html' %}
 
@@ -55,7 +55,19 @@
                     <br>
         
                     <div class="datasets">
-                        <h1 class="sensor2">Current_i1 :</h1>
+                        <h1 class="sensor2">Average Current :</h1>
+                    </div>
+                    <br>
+					<div class="datasets">
+                        <h1 class="sensor21">Current_i1 :</h1>
+                    </div>
+                    <br>
+					<div class="datasets">
+                        <h1 class="sensor22">Current_i2 :</h1>
+                    </div>
+                    <br>
+					<div class="datasets">
+                        <h1 class="sensor23">Current_i3 :</h1>
                     </div>
                     <br>
                     <div class="datasets">
@@ -290,7 +302,7 @@
                     <!-- Example row of columns -->
                     <div class="row">
                         <div class="chart-wrapper">
-							<div id="chartContainer" style="height: 370px; width: 1470px; margin: 0px auto;">
+							<div id="chartContainer" style="height: 370px; width: 100%;margin: 0px auto;">
 	<div class="canvasjs-chart-container" style="position: relative; text-align: left; cursor: auto; direction: ltr;">
 		<canvas class="canvasjs-chart-canvas" width="1150" height="462" style="width: 920px; height: 370px; position: absolute; user-select: none;"></canvas>
 		<canvas class="canvasjs-chart-canvas" width="1150" height="462" style="width: 920px; height: 370px; position: absolute; -webkit-tap-highlight-color: transparent; user-select: none; cursor: default;"></canvas>
@@ -634,6 +646,9 @@
             
                            // $(".sensor2").text("");
                             $(".sensor2").text("Average Current : " +  data2[1] );
+							$(".sensor21").text("Current_i1 : " +  dataloc2[1] );
+							$(".sensor22").text("Current_i2: " +  dataloc3[1] );
+							$(".sensor23").text("Current_i3: " +  dataloc4[1] );
             
                            // $(".sensor3").text("");
                             $(".sensor3").text("Frequency : " + data3[1] );
@@ -1158,7 +1173,8 @@ setInterval(function(){updateChart()}, updateInterval);
 				<script>
 function myFunction() {
 	var x={{data2}};
-	if(x==0){
+	var y={{data1}};
+	if(x==0 && y==0){
   document.getElementById("demo").innerHTML = "No data is available for selected meter.";
 	}
 }
@@ -1186,7 +1202,7 @@ body{
     width: 30%;
     border: solid black 1px;
     min-height: fit-content;
-    overflow: auto;
+    overflow: scroll;
     overflow-y: scroll;
     padding-left: 1%;
     padding-right: 1%;
@@ -1194,10 +1210,10 @@ body{
 }
 
 .home .right {
-    width: 120%;
+    width: 70%;
     border: solid black 1px;
     height: 100%;
-    min-height: fit-content;
+	min-height: fit-content;
 }
 .home{
     background-color: bisque;
@@ -1221,6 +1237,16 @@ body{
 .sensor2{
     font-size: large;
 }
+	.sensor21{
+    font-size: large;
+}
+		.sensor22{
+    font-size: large;
+}
+		.sensor23{
+    font-size: large;
+}
+	
 .sensor3{
     font-size: large;
 }
@@ -1305,10 +1331,10 @@ body{
 }
 	.datime{
     position:absolute;
-		right: 30px;}
+		right: 1%;}
 .btns{
     position:absolute;
-    right: 45px;
+    right: 30px;
 	top: 30px;
 }
 .modal {
@@ -1379,10 +1405,11 @@ body{
   color: black;
 }
 .chart-wrapper{
-    width: 100%;
-    height: 80%;
-    margin: 0%;
+    width: 100% !important;
+    height: 80% !important;
+    margin: 0% !important;
 }
+
 
 .graphs{  
 
@@ -1397,6 +1424,5 @@ body{
 		
 		
 	}
-
 </style>
 </html>
