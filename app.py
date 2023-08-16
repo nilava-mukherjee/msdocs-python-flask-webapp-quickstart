@@ -62,7 +62,7 @@ print("ok till 70")
 def data():
     print("session valid line no 74")
     global Meter_id
-    ok2 = "line72"
+    ok2 = "line64"
     print(ok2)
     print(Meter_id)
     global st1
@@ -450,18 +450,18 @@ def currentdata():
         db_cursor = db.cursor()
         # stmt1 = "SELECT pf1 from trialbsl WHERE Modbus_time BETWEEN %s AND %s"
         data_allday_yesterday = (yesterday_midnight.timestamp(), midnight.timestamp())
-        print(f"yesterday time {str(int(yesterday_midnight.timestamp() - 500))}")
+        print(f"yesterday time {str(int((yesterday_midnight.timestamp()*1000)))}")
         # data5_m = Meter_id
-        db_cursor.execute("select Total_net_kWh from bokaro_ems.trialbsl where Meter_id = %s and timest between %s and %s" , (Meter_id, str(int(yesterday_midnight.timestamp() - 500)), str(int(yesterday_midnight.timestamp() + 500)),))
+        db_cursor.execute("select Total_net_kWh from bokaro_ems.trialbsl where Meter_id = %s and timest between %s and %s" , (Meter_id, str(int((yesterday_midnight.timestamp()*1000) - 500000)), str(int((yesterday_midnight.timestamp()*1000) + 500000)),))
         data8 = db_cursor.fetchall()
         print(data8)
 
-        db_cursor.execute("select Total_net_kWh from bokaro_ems.trialbsl where Meter_id = %s and timest between %s and %s",(Meter_id, str(int(midnight.timestamp() - 500)), str(int(midnight.timestamp() + 500)),))
+        db_cursor.execute("select Total_net_kWh from bokaro_ems.trialbsl where Meter_id = %s and timest between %s and %s",(Meter_id, str(int((midnight.timestamp()*1000) - 500000)), str(int((midnight.timestamp()*1000) + 500000)),))
         data99 = db_cursor.fetchall()
         print(data99)
         db.commit()
         db.close()
-        if (data99 != []):
+        if (data99 != [] and data8 != []):
             x_values_en = pd.DataFrame(data8)
             print(x_values_en)
             x_val_en = ((x_values_en.T).values.tolist())
@@ -853,5 +853,3 @@ def logout():
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
-
-
