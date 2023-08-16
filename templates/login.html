@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -7,42 +8,40 @@
   <title>Login</title>
 </head>
 
-<body style="height: 1080px; width: 1920px">
+<body>
+	<br><br><br>
+	<br>
+			  <br>
+	<div class="form2">
 	<center>
-<div class="logo">
-	<img src ="{{url_for('static', filename='saillogo.png')}}" alt="" height="150" width="150">
+    <img src ="{{url_for('static', filename='saillogo.png')}}" alt="" height="10%" width="10%">
 	<br>
-	<img src ="{{url_for('static', filename='BSP.png')}}" alt="" width="20%">
+	<img src ="{{url_for('static', filename='BSP.png')}}" alt="" height="15%" width="15%">
+		<br>
+		<img src ="{{url_for('static', filename='emonitorlogo.png')}}" alt=""height="10%" width="10%">
+		<br>
+		
+		
+	</center>
+		<div class="form3"></div>
 	</div>
-		</center>
-	<br>
-	<center>
-<div class="logo2">
-		<img src ="{{url_for('static', filename='emonitorlogo.png')}}" alt="" width="10%">
-	</div>
-		</center>
-	<br>
-   <center> <div class="container">
-        <form method="POST" style="">
+    <div class="container">
+        <form method="POST">
             <label>Username : </label>   
             <input type="text" placeholder="Enter Username" name="username" required>  
             <label>Password : </label>   
             <input type="password" placeholder="Enter Password" name="password" required>  
             <button type="submit" value="submit" id="updateButton">Login</button>  
             <p>Contact Admin for login details</p>
-        </form><br><br><br><br><br><br><br><br>
-	  <br><br><br>
-    </div>
-	<div ><table class="signature" align="right"><tr><td><h3>Developed</h3></td><td><h3>by:</h3></td><td><img src ="{{url_for('static', filename='armalogo.png')}}" alt="" width="80%"></td></tr></table>
-		
-	</div>
-	   </center>
+        </form></div>
+	
+	
 </body>
 <style>
 Body {
-	background-color: bisque;
-    
-        }
+    background-color: bisque;
+	position: relative;
+}
 button {   
     background-color: #00A9D4;   
     width: 100%;  
@@ -56,9 +55,22 @@ button {
 form {   
     border: 2px solid black;  
     width: 450px; 
-    
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     padding: 10px;
 }
+	.form2 {   
+      
+    width: 1080px; 
+    position: relative;
+    left: 50%;
+    top:15%;
+    transform: translate(-50%, -50%);
+    padding: 25px;
+}
+	
 input[type=text], input[type=password] {   
     width: 100%;   
     margin: 8px 0;  
@@ -70,16 +82,13 @@ input[type=text], input[type=password] {
 button:hover {   
     opacity: 0.7;   
 }          
-.container{   
-    padding: 25px;   
+.container{  
+	padding-top: 20px;
+	
 }
 p{
     color: red;
 }
-	.signature{
-		padding-left: 1600px;		
-	}
-	
 </style>
 
 </html>
