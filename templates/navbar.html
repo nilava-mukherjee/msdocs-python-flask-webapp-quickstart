@@ -5,14 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
 </head>
 <body>
     <nav id="navbar">
-        <div id="logo">
-            <img src="" alt="">
-        </div>
+        
         <ul class="ul">
-            <li class="home_page"><a href="{{ url_for('mapping') }}">Home</a></li>
+		  <li class="home_page"><a href="{{ url_for('mapping') }}">Home</a></li>
             <li class="item"><a href="{{ url_for('currentdata') }}">Current Data</a></li>
             <li class="item"><a href="{{ url_for('historic') }}">Historic Data</a></li>
 			<li class="item2"><a href="{{ url_for('logout') }}">Log Out</a></li>
@@ -32,6 +31,7 @@ body{
     overflow: auto;
     overflow-x: auto;
     overflow-y: auto;
+	font-family: "Trirong", serif;
     
 }
 #navbar{
