@@ -709,8 +709,7 @@ def historicdwnld():
                                       host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                       port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL, AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1  from trialbsl WHERE Meter_id =%s and timest between %s and %s",(Meter_id,start_time,end_time))
+        db2_cursor.execute("SELECT Modbus_time,AVG_voltage_LL, AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1  from trialbsl WHERE Meter_id =%s and timest between %s and %s",(Meter_id,start_time,end_time))
         data5 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
@@ -792,6 +791,249 @@ def mapping():
     print("session valid")
     return render_template('mapping.html')
 
+@app.route("/meterstatus",methods=["GET", "POST"])
+def meterstatus():
+    stm = str(int(datetime.now().timestamp() - 360))
+    stme = str(int(datetime.now().timestamp()))
+
+
+
+    try:
+        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                      port="3306")
+        db2_cursor = db2.cursor()
+        db2_cursor.execute("select AVG_current From trialbsl where Meter_id ='GMBS C03_10D' and timest between %s and %s",(stm,stme,))
+                           #"timest between %s and %s",(stm,stme,))
+        data2 = db2_cursor.fetchall()
+
+        d1_values = pd.DataFrame(data2)
+        a1= ((d1_values.T).values.tolist())
+        if(a1!=[]):
+            if(a1[0][0]==0.0):
+                a1n = 2
+            else:
+                a1n = 1
+        else:
+            a1n = 0
+
+    #         print(voltage_ll)
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        print("line92")
+    try:
+
+
+        db2_cursor.execute(
+            "select AVG_current From trialbsl where Meter_id ='GMBS C05_08D' and timest between %s and %s",(stm,stme,))
+        data2 = db2_cursor.fetchall()
+
+        d1_values = pd.DataFrame(data2)
+        a2 = ((d1_values.T).values.tolist())
+        print(a2)
+        print("test")
+        if(a2!=[]):
+            if(a2[0][-1]==0.0):
+                a2n = 2
+            else:
+                a2n = 1
+        else:
+            a2n = 0
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        print("line92")
+    try:
+
+        db2_cursor.execute(
+            "select AVG_current From trialbsl where Meter_id ='GMBS C06_09D' and timest between %s and %s",(stm,stme,))
+        data2 = db2_cursor.fetchall()
+
+        d1_values = pd.DataFrame(data2)
+        a3 = ((d1_values.T).values.tolist())
+        if(a3!=[]):
+            if(a3[0][-1]==0.0):
+                a3n = 2
+            else:
+                a3n = 1
+        else:
+            a3n = 0
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        print("line92")
+    try:
+
+        db2_cursor.execute(
+            "select AVG_current From trialbsl where Meter_id ='GMBS C08_16D' and timest between %s and %s",(stm,stme,))
+        data2 = db2_cursor.fetchall()
+
+        d1_values = pd.DataFrame(data2)
+        a4 = ((d1_values.T).values.tolist())
+        if(a4!=[]):
+            if(a4[0][-1]==0.0):
+                a4n = 2
+            else:
+                a4n = 1
+        else:
+            a4n = 0
+
+    #         print(voltage_ll)
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        print("line92")
+    try:
+
+        db2_cursor.execute(
+            "select AVG_current From trialbsl where Meter_id ='GMBS C09_13D' and timest between %s and %s",(stm,stme,))
+        data2 = db2_cursor.fetchall()
+
+        d1_values = pd.DataFrame(data2)
+        a5 = ((d1_values.T).values.tolist())
+        if(a5!=[]):
+            if(a5[0][-1]==0.0):
+                a5n = 2
+            else:
+                a5n = 1
+        else:
+            a5n = 0
+
+    #         print(voltage_ll)
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        print("line92")
+    try:
+
+        db2_cursor.execute(
+            "select AVG_current From trialbsl where Meter_id ='GMBS C18_14D' and timest between %s and %s",(stm,stme,))
+        data2 = db2_cursor.fetchall()
+
+        d1_values = pd.DataFrame(data2)
+        a6 = ((d1_values.T).values.tolist())
+        if(a6!=[]):
+            if(a6[0][-1]==0.0):
+                a6n = 2
+            else:
+                a6n = 1
+        else:
+            a6n = 0
+
+    #         print(voltage_ll)
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        print("line92")
+    try:
+
+        db2_cursor.execute(
+            "select AVG_current From trialbsl where Meter_id ='GMBS C19_17D' and timest between %s and %s",(stm,stme,))
+        data2 = db2_cursor.fetchall()
+
+        d1_values = pd.DataFrame(data2)
+        a7 = ((d1_values.T).values.tolist())
+        if(a7!=[]):
+            if(a7[0][-1]==0.0):
+                a7n = 2
+            else:
+                a7n = 1
+        else:
+            a7n = 0
+
+    #         print(voltage_ll)
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        print("line92")
+    try:
+
+        db2_cursor.execute(
+            "select AVG_current From trialbsl where Meter_id ='GMBS C20_18D' and timest between %s and %s",(stm,stme,))
+        data2 = db2_cursor.fetchall()
+
+        d1_values = pd.DataFrame(data2)
+        a8 = ((d1_values.T).values.tolist())
+        if(a8!=[]):
+            if(a8[0][-1]==0.0):
+                a8n = 2
+            else:
+                a8n = 1
+        else:
+            a8n = 0
+
+    #         print(voltage_ll)
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        print("line92")
+    try:
+
+        db2_cursor.execute("select AVG_current From trialbsl where Meter_id ='GMBS C21_11D' and timest between %s and %s",(stm,stme,))
+        data2 = db2_cursor.fetchall()
+
+        d1_values = pd.DataFrame(data2)
+        a9 = ((d1_values.T).values.tolist())
+        if(a9!=[]):
+            if(a9[0][-1]==0.0):
+                a9n = 2
+            else:
+                a9n = 1
+        else:
+            a9n = 0
+
+    #         print(voltage_ll)
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        print("line92")
+    try:
+
+        db2_cursor.execute(
+            "select AVG_current From trialbsl where Meter_id ='GMBS C24_12D' and timest between %s and %s",(stm,stme,))
+        data2 = db2_cursor.fetchall()
+
+        d1_values = pd.DataFrame(data2)
+        a10 = ((d1_values.T).values.tolist())
+        if(a10!=[]):
+            if(a10[0][-1]==0.0):
+                a10n = 2
+            else:
+                a10n = 1
+        else:
+            a10n = 0
+
+    #         print(voltage_ll)
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        print("line92")
+    try:
+
+        db2_cursor.execute(
+            "select AVG_current From trialbsl where Meter_id ='GMBS C27_15D' and timest between %s and %s",(stm,stme,))
+        data2 = db2_cursor.fetchall()
+        db2.commit()
+        db2.close()
+        d1_values = pd.DataFrame(data2)
+        a11 = ((d1_values.T).values.tolist())
+        if(a11!=[]):
+            if(a11[0][-1]==0.0):
+                a11n = 2
+            else:
+                a11n = 1
+        else:
+            a11n = 0
+
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+        print("line92")
+    data1 = [a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11]
+    data = [a1n, a2n, a3n, a4n, a5n, a6n, a7n, a8n, a9n, a10n, a11n]
+    print(data1)
+    print(data)
+    print(type(data[1]))
+
+    # data=[xx1(not used),average voltage,avg_current,frequency,xx2(thd),averagepf,activepower,activeenergy,apparentpower,apparent energy]
+    response1 = make_response(json.dumps(data))
+    response1.content_type = 'application/json'
+    return response1
+
+
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -848,6 +1090,8 @@ def logout():
     print("wrong req")
     print(url_for('mapping'))
     return render_template('login.html')
+
+
 
 
 
