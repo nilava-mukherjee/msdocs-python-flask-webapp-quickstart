@@ -6,19 +6,356 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapping page</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+	<script>
+	var data1 = [];
+	var data2 = [];
+	var data3 = [];
+	var data4 = [];
+	var data5 = [];
+	var data6 = [];
+	var data7 = [];
+	var data8 = [];
+	var data9 = [];
+	var data10 = [];
+	var data11 = [];
+		
+	var x11;
+    var p11;
+		
+	var x12;
+    var p12;
+		
+	var x13;
+    var p13;
+		
+	var x14;
+    var p14;
+		
+	var x15;
+    var p15;
+		
+	var x16;
+    var p16;
+		
+    var x17;
+    var p17;
+		 
+	var x18;
+    var p18;
+		 
+	var x19;
+    var p19;
+		 
+	var x20;
+    var p20;
+		 
+	var x21;
+    var p22;
+		
+	function requestData()
+                    {
+                        // Ajax call to get the Data from Flask
+                        var requests = $.get('/meterstatus');
+						
+            
+                        var tm = requests.done(function (result)
+                        {
+							console.log("this is result")
+							console.log(result)
+							data1 = [];
+                            data1.push(result[0]);result
+							
+							data2 = [];
+                            data2.push(result[1]);
+							data3 = [];
+                            data3.push(result[2]);
+							data4 = [];
+                            data4.push(result[3]);
+							data5 = [];
+                            data5.push(result[4]);
+							data6 = [];
+                            data6.push(result[5]);
+							data7 = [];
+                            data7.push(result[6]);
+							data8 = [];
+                            data8.push(result[7]);
+							data9 = [];
+                            data9.push(result[8]);
+							data10 = [];
+                            data10.push(result[9]);
+							data11 = [];
+                            data11.push(result[10]);
+							
+							setInterval(requestData, 5000);
+						})
+						}
+requestData();		
+window.onload=function myFunction1() //led 1 bin 1 //
+	{
+	
+	
+		/*var x11;
+    var p11;
+	var x12;
+    var p12;
+			var x12;
+    var p12;
+			var x12;
+    var p12;
+			var x12;
+    var p12;
+			var x12;
+    var p12;
+		 var x12;
+    var p12;
+		 
+		var x12;
+    var p12;
+		 
+		var x12;
+    var p12;
+		 
+		var x12;
+    var p12;
+		 
+		var x12;
+    var p12;
+		 var p12;
+    var p12;*/
+		
+	
+    x11=data1[0];
+	 if (x11==0)  
+   {
+ p11="{{url_for('static', filename='A1.png')}}";
+  }
+	else if (x11==1)
+  {
+ p11="{{url_for('static', filename='A3.png')}}";
+  }
+	else if (x11==2)
+  {
+ p11="{{url_for('static', filename='A2.png')}}";
+  }
+  else 
+		{
+			p11="{{url_for('static', filename='ldnggif.gif')}}";
+		}
+  document.getElementById("demo11").src=p11;
+		
+	
+    x12=data2[0];
+	 if (x12==0)  
+   {
+ p12="{{url_for('static', filename='A1.png')}}";
+  }
+	else if (x12==1)
+  {
+ p12="{{url_for('static', filename='A3.png')}}";
+  }
+  else if (x12==2) 
+		{
+			p12="{{url_for('static', filename='A2.png')}}";
+		}
+  else 
+	{
+		p12="{{url_for('static', filename='ldnggif.gif')}}";
+	}
+  document.getElementById("demo12").src=p12;
+			
+    x13=data3[0];
+	 if (x13==0)  
+   {
+ p13="{{url_for('static', filename='A1.png')}}";
+  }
+	else if (x13==1)
+  {
+ p13="{{url_for('static', filename='A3.png')}}";
+  }
+	else if (x13==2)
+  {
+ p13="{{url_for('static', filename='A2.png')}}";
+  }
+  else 
+		{
+			p13="{{url_for('static', filename='ldnggif.gif')}}";
+		}
+  document.getElementById("demo13").src=p13;
+		
+	
+    x14=data4[0];
+	 if (x14==0)  
+   {
+ p14="{{url_for('static', filename='A1.png')}}";
+  }
+	else if (x14==1)
+  {
+ p14="{{url_for('static', filename='A3.png')}}";
+  }
+	else if (x14==2)
+  {
+ p14="{{url_for('static', filename='A2.png')}}";
+  }
+  else 
+		{
+			p14="{{url_for('static', filename='ldnggif.gif')}}";
+		}
+  document.getElementById("demo14").src=p14;
+			
+    x15=data5[0];
+	 if (x15==0)  
+   {
+ p15="{{url_for('static', filename='A1.png')}}";
+  }
+	else if (x15==1)
+  {
+ p15="{{url_for('static', filename='A3.png')}}";
+  }
+	else if (x15==2)
+  {
+ p15="{{url_for('static', filename='A2.png')}}";
+  }
+  else 
+		{
+			p15="{{url_for('static', filename='ldnggif.gif')}}";
+		}
+  document.getElementById("demo15").src=p15;
+		
+	
+    x16=data6[0];
+	 if (x16==0)  
+   {
+ p16="{{url_for('static', filename='A1.png')}}";
+  }
+	else if (x16==1)
+  {
+ p16="{{url_for('static', filename='A3.png')}}";
+  }
+	else if (x16==2)
+  {
+ p16="{{url_for('static', filename='A2.png')}}";
+  }
+  else 
+		{
+			p16="{{url_for('static', filename='ldnggif.gif')}}";
+		}
+  document.getElementById("demo16").src=p16;
+			
+    x17=data7[0];
+	 if (x17==0)  
+   {
+ p17="{{url_for('static', filename='A1.png')}}";
+  }
+	else if (x17==1)
+  {
+ p17="{{url_for('static', filename='A3.png')}}";
+  }
+	else if (x17==2)
+  {
+ p17="{{url_for('static', filename='A2.png')}}";
+  }
+  else 
+		{
+			p17="{{url_for('static', filename='ldnggif.gif')}}";
+		}
+  document.getElementById("demo17").src=p17;
+		
+	
+    x18=data8[0];
+	 if (x18==0)  
+   {
+ p18="{{url_for('static', filename='A1.png')}}";
+  }
+	else if (x18==1)
+  {
+ p18="{{url_for('static', filename='A3.png')}}";
+  }
+	else if (x18==2)
+  {
+ p18="{{url_for('static', filename='A2.png')}}";
+  }
+  else 
+		{
+			p18="{{url_for('static', filename='ldnggif.gif')}}";
+		}
+  document.getElementById("demo18").src=p18;
+			
+    x19=data9[0];
+	 if (x19==0)  
+   {
+ p19="{{url_for('static', filename='A1.png')}}";
+  }
+	else if (x19==1)
+  {
+ p19="{{url_for('static', filename='A3.png')}}";
+  }
+	else if (x19==2)
+  {
+ p19="{{url_for('static', filename='A2.png')}}";
+  }
+  else 
+		{
+			p19="{{url_for('static', filename='ldnggif.gif')}}";
+		}
+  document.getElementById("demo19").src=p19;
+		
+	
+    x20=data10[0];
+	 if (x20==0)  
+   {
+ p20="{{url_for('static', filename='A1.png')}}";
+  }
+	else if (x20==1)
+  {
+ p20="{{url_for('static', filename='A3.png')}}";
+  }
+	else if (x20==2)
+  {
+ p20="{{url_for('static', filename='A2.png')}}";
+  }
+  else 
+		{
+			p20="{{url_for('static', filename='ldnggif.gif')}}";
+		}
+  document.getElementById("demo20").src=p20;
+		
+		x21=data11[0];
+	 if (x21==0)  
+   {
+ p21="{{url_for('static', filename='A1.png')}}";
+  }
+	else if (x21==1)
+  {
+ p21="{{url_for('static', filename='A3.png')}}";
+  }
+	else if (x21==2)
+  {
+ p21="{{url_for('static', filename='A2.png')}}";
+  }
+  else 
+		{
+			p21="{{url_for('static', filename='ldnggif.gif')}}";
+		}
+  document.getElementById("demo21").src=p21;
+		setInterval(myFunction1, 5000);
+	}
+	
+	</script>
+	
+	
 </head>
 <body>
 	
 		{% include 'navbar.html' %}
-	
 	<div class="body1" style="margin: 0;
     padding: 0;
     
     display: flex;
     justify-content: center;
-    
     background-size: cover
-							  overflow: auto">
+	overflow: auto">
     <div class="main1" style="border: solid black 1px;
     min-width: 300px;
     width: fit-content;
@@ -27,6 +364,7 @@
     overflow: auto">
 		
         <div class="header" style="text-align: center;"><h1 style="font-size: medium;"> GMBS </h1></div>
+		<hr>
         
         <div class="meter 1"><form action="/currentdata" method="post">
 			<select class="select" name="meter_id">
@@ -34,19 +372,19 @@
 			<input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form>
 			<div class="meter_data">
 				<p class="meterID">MeterID: </p>
-				<p class="meterloc">GMBS C03_10D </p>
+				<p class="meterloc">GMBS C03_10D </p><p><img id ="demo11" src="{{url_for('static', filename='ldnggif.gif')}}" height="15" alt=""/></p>
 			</div>
 		</div>
-        <div class="meter 2"><form action="/currentdata" method="post"><select class="select" name="meter_id"><option value="GMBS C05_08D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C05_08D </p></div></div>
-        <div class="meter 3"><form action="/currentdata" method="post"><select class="select" name="meter_id"><option value="GMBS C06_09D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C06_09D </p></div></div>
-        <div class="meter 4"><form action="/currentdata" method="post"><select class="select" name="meter_id"><option value="GMBS C08_16D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C08_16D </p></div></div>
-        <div class="meter 5"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C09_13D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C09_13D </p></div></div>
-        <div class="meter 6"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C18_14D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C18_14D </p></div></div>
-        <div class="meter 7"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C19_17D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C19_17D </p></div></div>
-        <div class="meter 8"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C20_18D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C20_18D </p></div></div>
-        <div class="meter 9"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C21_11D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C21_11D </p></div></div>
-        <div class="meter 10"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C24_12D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C24_12D </p></div></div>
-        <div class="meter 11"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C27_15D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C27_15D </p></div></div>
+        <div class="meter 2"><form action="/currentdata" method="post"><select class="select" name="meter_id"><option value="GMBS C05_08D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C05_08D </p><p><img id ="demo12" src="{{url_for('static', filename='ldnggif.gif')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 3"><form action="/currentdata" method="post"><select class="select" name="meter_id"><option value="GMBS C06_09D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C06_09D </p><p><img id ="demo13" src="{{url_for('static', filename='ldnggif.gif')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 4"><form action="/currentdata" method="post"><select class="select" name="meter_id"><option value="GMBS C08_16D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C08_16D </p><p><img id ="demo14" src="{{url_for('static', filename='ldnggif.gif')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 5"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C09_13D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C09_13D </p><p><img id ="demo15" src="{{url_for('static', filename='ldnggif.gif')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 6"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C18_14D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C18_14D </p><p><img id ="demo16" src="{{url_for('static', filename='ldnggif.gif')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 7"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C19_17D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C19_17D </p><p><img id ="demo17" src="{{url_for('static', filename='ldnggif.gif')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 8"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C20_18D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C20_18D </p><p><img id ="demo18" src="{{url_for('static', filename='ldnggif.gif')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 9"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C21_11D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C21_11D </p><p><img id ="demo19" src="{{url_for('static', filename='ldnggif.gif')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 10"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C24_12D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C24_12D </p><p><img id ="demo20" src="{{url_for('static', filename='ldnggif.gif')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 11"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="GMBS C27_15D"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID: </p><p class="meterloc">GMBS C27_15D </p><p><img id ="demo21" src="{{url_for('static', filename='ldnggif.gif')}}" height="15" alt=""/></p></div></div>
 		<!--
 		
         <div class="meter 12"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="m12"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" allign="center"></form><div class="meter_data"><p class="meterID">MeterID: Meter 12</p><p class="meterloc">Meter Location: GMBS-ROOM1_METER12</p></div></div>
@@ -83,27 +421,46 @@
     height: auto;
     overflow: auto">
         <div class="header" style="text-align: center;"><h1 style="font-size: medium;"> MSDS </h1></div>
+		<hr>
 
-        <div class="meter 37"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="37"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER37</p></div></div>
-        <div class="meter 38"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="38"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER38</p></div></div>
-        <div class="meter 39"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="39"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER39</p></div></div>
-        <div class="meter 40"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="40"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER40</p></div></div>
-        <div class="meter 41"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="41"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER41</p></div></div>
-        <div class="meter 42"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="42"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER42</p></div></div>
-        <div class="meter 43"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="43"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER43</p></div></div>
-        <div class="meter 44"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="44"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER44</p></div></div>
-        <div class="meter 45"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="45"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER45</p></div></div>
-        <div class="meter 46"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="46"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER46</p></div></div>
-        <div class="meter 47"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="47"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER47</p></div></div>
+        <div class="meter 37"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="37"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER37</p><p><img id ="demo112" src="{{url_for('static', filename='A1.png')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 38"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="38"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER38</p><p><img id ="demo113" src="{{url_for('static', filename='A1.png')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 39"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="39"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER39</p><p><img id ="demo114" src="{{url_for('static', filename='A1.png')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 40"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="40"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER40</p><p><img id ="demo115" src="{{url_for('static', filename='A1.png')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 41"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="41"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER41</p><p><img id ="demo116" src="{{url_for('static', filename='A1.png')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 42"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="42"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER42</p><p><img id ="demo117" src="{{url_for('static', filename='A1.png')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 43"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="43"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER43</p><p><img id ="demo118" src="{{url_for('static', filename='A1.png')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 44"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="44"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER44</p><p><img id ="demo119" src="{{url_for('static', filename='A1.png')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 45"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="45"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER45</p><p><img id ="demo120" src="{{url_for('static', filename='A1.png')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 46"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="46"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER46</p><p><img id ="demo121" src="{{url_for('static', filename='A1.png')}}" height="15" alt=""/></p></div></div>
+        <div class="meter 47"><form action="/currentdata" method="post"><select class="select" name="Meter_id"><option value="47"></option></select><input class="img" type="image" src="{{url_for('static', filename='electric-meter.png')}}" alt="Submit" width="50px" height="40px" align="center"></form><div class="meter_data"><p class="meterID">MeterID:</p><p class="meterloc">ROOM2_METER47</p><p><img id ="demo122" src="{{url_for('static', filename='A1.png')}}" height="15" alt=""/></p></div></div>
 
 
     </div>
-		</div>
+	</div>
+	<center>
+	<table class="tb1"><tr>
+		<td>
+		<div class="index">
+			<p><img class="ind1" src="{{url_for('static', filename='A1.png')}}" height="12" alt=""/> : Meter Off</p>
+			<p><img class="ind1" src="{{url_for('static', filename='A3.png')}}" height="12" alt=""/> : Meter On</p>
+			<p><img class="ind1" src="{{url_for('static', filename='A2.png')}}" height="12" alt=""/> : Meter On(No Load)</p>
+			</div>
+		</td>
+		</tr>
+	</table>
+		</center>
+	
+		
+		
+	
+	
+	
+		
 </body>
 
 <style>
 	body{
-    
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
@@ -129,14 +486,19 @@
     text-align: center;
 }
 .meter_data{
-    font-size: small;
+    font-size: 13px;
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 5px;
-	font-weight: bold;  
+    gap: 10px;
+	font-weight: bold;
 }
-
+	.index{
+	font-size:13px;
+    display: flex;
+    gap: 20px;
+	font-weight: bold;
+	}
 .select{
     display: none;
 }
@@ -147,5 +509,6 @@
 	.meterloc{
    font-weight: bold;  
 }
+	
 </style>
 </html>
