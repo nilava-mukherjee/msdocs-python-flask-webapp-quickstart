@@ -98,6 +98,14 @@
                         <h1 class="sensor9">Apparent power :</h1>
                     </div>
                     <br>
+<div class="datasets">
+                        <h1 class="sensor91">Reactive power :</h1>
+                    </div>
+                    <br>
+					<div class="datasets">
+                        <h1 class="sensor92">Reactive energy :</h1>
+                    </div>
+                    <br>
                 </div>
                 <div class="energy_meter">               <!-- Energy Calculation -->
                     <div class="calculation">
@@ -158,7 +166,53 @@
                             <option value="GMBS C21_11D">GMBS C21_11D</option>
                             <option value="GMBS C24_12D">GMBS C24_12D</option>
                             <option value="GMBS C27_15D">GMBS C27_15D</option>
-                           
+                           <!-- <option value="m1">Meter 1</option>
+                            <option value="m2">Meter 2</option>
+                            <option value="m3">Meter 3</option>
+                            <option value="m4">Meter 4</option>
+                            <option value="4">Meter 5</option>
+                            <option value="1">Meter 6</option>
+                            <option value="2">Meter 7</option>
+                            <option value="3">Meter 8</option>
+                            <option value="4">Meter 9</option>
+                            <option value="4">Meter 10</option>
+                            <option value="1">Meter 11</option>
+                            <option value="2">Meter 12</option>
+                            <option value="3">Meter 13</option>
+                            <option value="4">Meter 14</option>
+                            <option value="4">Meter 15</option>
+                            <option value="1">Meter 16</option>
+                            <option value="2">Meter 17</option>
+                            <option value="3">Meter 18</option>
+                            <option value="4">Meter 19</option>
+                            <option value="4">Meter 20</option>
+                            <option value="1">Meter 21</option>
+                            <option value="2">Meter 22</option>
+                            <option value="3">Meter 23</option>
+                            <option value="4">Meter 24</option>
+                            <option value="4">Meter 25</option>
+                            <option value="1">Meter 26</option>
+                            <option value="2">Meter 27</option>
+                            <option value="3">Meter 28</option>
+                            <option value="4">Meter 29</option>
+                            <option value="4">Meter 30</option>
+                            <option value="1">Meter 31</option>
+                            <option value="2">Meter 32</option>
+                            <option value="3">Meter 33</option>
+                            <option value="4">Meter 34</option>
+                            <option value="4">Meter 35</option>
+                            <option value="1">Meter 36</option>
+                            <option value="2">Meter 37</option>
+                            <option value="3">Meter 38</option>
+                            <option value="4">Meter 39</option>
+                            <option value="4">Meter 40</option>
+                            <option value="1">Meter 41</option>
+                            <option value="2">Meter 42</option>
+                            <option value="3">Meter 43</option>
+                            <option value="4">Meter 44</option>
+                            <option value="4">Meter 45</option>
+                            <option value="1">Meter 46</option>
+                            <option value="2">Meter 47</option>-->
                             
 
 
@@ -187,23 +241,22 @@
                                     <div class="modal-body">
                                         <table id="datatable" style="width: 100%">
                                             <tr>
-                                              <th>Modbus time</th>
+                                             <th>MM/DD/YYYY-HH/MM/SS/MS</th>
                                               <th>Average Voltage </th>
-                                              <th>Average Current </th>
-                                              <th>Total Harmonic Distortion</th>
-                                              <th>Apparent Energy</th>
-                                              <th>Power factor</th>
-                                              <th>Energy</th>
-                                              <th>Power</th>
-                                              <th>Apparent Power</th>
-                                              <th>Frequency</th>
-											  <th>Power Factor 1</th>
 											  <th>Current_i1</th>
 											  <th>Current_i2</th>
 											  <th>Current_i3</th>
-											  <th>Tstmp</th>
-                                      
-                                            </tr>
+                                              <th>Average Current </th>
+											  <th>Frequency</th>
+											  <th>Average Power Factor</th>
+                                              <th>Total Harmonic Distortion</th>
+                                              <th>Active Power</th>
+											  <th>Active Energy</th>
+                                              <th>Reactive Power</th>
+											  <th>Reactive Energy</th> 
+											  <th>Apparent Power</th>
+											  <th>Apparent Energy</th>
+</tr>
                                             {{ data0 }}
                                             {% for row in data1 %}
                                             <tr>
@@ -419,6 +472,28 @@
     
                 <div class="container-fluid">
                     <!-- Example row of columns -->
+					<div class="row">
+                        <div class="chart-wrapper" id="data-i1">
+        
+                        </div>
+                    </div>
+                </div>
+    
+                <br>
+                <br>  
+    
+                <div class="container-fluid">
+					<div class="row">
+                        <div class="chart-wrapper" id="data-i2">
+        
+                        </div>
+                    </div>
+                </div>
+    
+                <br>
+                <br>  
+    
+                <div class="container-fluid">
                     <div class="row">
                         <div class="chart-wrapper" id="data-loc">
         
@@ -442,6 +517,8 @@
 				    var dataloc2 = []; //i1
 					var dataloc3 = []; //i2
 					var dataloc4 = []; //i3
+var dataloc30 = []; 
+					var dataloc40 = [];
 					var x = []; //tst
             
                     function requestData()
@@ -486,6 +563,12 @@
                             // i
                              var seriesi = charti.series[0],
                                 shifti = seriesi.data.length > 500;
+							
+							                             var seriesi1 = charti1.series[0],
+                                shifti1 = seriesi1.data.length > 500;
+							
+							                             var seriesi2 = charti2.series[0],
+                                shifti2 = seriesi2.data.length > 500;
     
                             // j
                              //var seriesj = chartj.series[0],
@@ -573,6 +656,13 @@
 							dataloc4.push(result[0]);
                             dataloc4.push(result[14]);
 							
+							dataloc30 = [];
+							dataloc30.push(result[0]);
+                            dataloc30.push(result[16]);
+							
+					        dataloc40 = [];
+							dataloc40.push(result[0]);
+                            dataloc40.push(result[17]);
 						
 							
 							
@@ -592,6 +682,8 @@
                             chartg.series[0].addPoint(data8, true, shiftg);
                             charth.series[0].addPoint(data9, true, shifth);
                             charti.series[0].addPoint(data10, true, shifti);
+							charti1.series[0].addPoint(dataloc30, true, shifti1);
+							charti2.series[0].addPoint(dataloc40, true, shifti2);
             
     
                             
@@ -627,6 +719,8 @@
     
                            // $(".sensor10").text("");
                             $(".sensor10").text("Meter ID : " +  data4[1]);
+                            $(".sensor91").text("Reactive power : " +  dataloc30[1]);
+							$(".sensor92").text("Reactive energy : " +  dataloc40[1]);
     
                            // $(".sensor11").text("");
                             //$(".sensor11").text("Meter location : " +  {{ data3 }});
@@ -671,7 +765,7 @@
                                      },
                             series: [{
                                 color : '#c23d23',
-                                lineColor:"blue",
+                                lineColor: '#303030',
                                 name: 'Average Voltage LL',
                                 data: []
                             }]
@@ -706,7 +800,8 @@
                                 }
                             },
                             series: [{
-                                lineColor: 'blue',
+                                color : '#c23d23',
+                                lineColor: '#303030',
                                 name: 'Average Current',
                                 data: []
                             }]
@@ -967,6 +1062,74 @@
                                 data: []
                             }]
                         }); 
+						charti1 = new Highcharts.Chart({
+                            chart:
+                                {
+                                renderTo: 'data-i1',
+                                defaultSeriesType: 'spline',
+                                events: {
+                                    load: requestData
+                                        }
+                                },
+                            title:
+                                {
+                                text: 'Reactive Power'
+                                },
+                            credits:{enabled:false},
+                            xAxis: {
+                                type: 'datetime',
+                                tickPixelInterval: 1800000,
+                                maxRange: 30 * 60000
+                                    },
+                            yAxis: {
+                                minPadding: 0.2,
+                                maxPadding: 0.2,
+                                title: {
+                                    text: 'Reactive Power',
+                                    margin: 80
+                                        }
+                                     },
+                            series: [{
+                                color : '#c23d23',
+                                lineColor: '#303030',
+                                name: 'Reactive Power',
+                                data: []
+                            }]
+                        }); 
+						charti2 = new Highcharts.Chart({
+                            chart:
+                                {
+                                renderTo: 'data-i2',
+                                defaultSeriesType: 'spline',
+                                events: {
+                                    load: requestData
+                                        }
+                                },
+                            title:
+                                {
+                                text: 'Reactive Energy'
+                                },
+                            credits:{enabled:false},
+                            xAxis: {
+                                type: 'datetime',
+                                tickPixelInterval: 1800000,
+                                maxRange: 30 * 60000
+                                    },
+                            yAxis: {
+                                minPadding: 0.2,
+                                maxPadding: 0.2,
+                                title: {
+                                    text: 'Reactive Energy',
+                                    margin: 80
+                                        }
+                                     },
+                            series: [{
+                                color : '#c23d23',
+                                lineColor: '#303030',
+                                name: 'Reactive Energy',
+                                data: []
+                            }]
+                        }); 
                     });
 window.onload = function () {
 	//console.log(data1)
@@ -979,7 +1142,9 @@ var dataPoints4 = [];
 var chart = new CanvasJS.Chart("chartContainer", {
 	zoomEnabled: true,
 	title: {
-		text: "Cumulative Graph"
+		text: "Cumulative Graph",
+		
+		fontSize:25,
 	},
 	axisX: {
 		title: "Data(/s)"
@@ -1228,6 +1393,12 @@ body{
 .sensor11{
     font-size: large;
 }
+	.sensor91{
+    font-size: large;
+}
+	.sensor92{
+    font-size: large;
+}
 .energy_meter{
     margin-top: 6px;
     color: white;
@@ -1372,6 +1543,11 @@ body{
     overflow: auto;
     overflow-y: scroll;
 	padding: 20px;
+	border-style:groove;
+	border-color:black;
+	border-width:thin;
+	
+		
 }
 	.error{
 		color: red;
