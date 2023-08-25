@@ -8,7 +8,6 @@ from datetime import datetime, timedelta
 from datetime import time as dt_tm
 from flask import Flask, g, redirect, render_template, request, session, url_for, make_response, Response
 import os
-
 Meter_id = "GMBS C05_08D"
 print(Meter_id)
 meterID_H = "GMBS C05_08D"
@@ -312,7 +311,7 @@ def data():
                                           host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                           port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Modbus_time, AVG_voltage_LL, AVG_current, Frequency, AVG_pf, Total_kw, Total_net_kWh, Total_kVA, Total_net_kVAh, THDP1,Current_i1, Current_i2, Current_i3, timest from trialbsl  where Meter_id =%s order by dataid desc limit 1",(Meter_id,))
+        db2_cursor.execute("SELECT Modbus_time, AVG_voltage_LL, AVG_current, Frequency, AVG_pf, Total_kw, Total_net_kWh, Total_kVA, Total_net_kVAh, THDP1,Current_i1, Current_i2, Current_i3, timest,Total_kVA,Total_net_kVArh from trialbsl  where Meter_id =%s order by dataid desc limit 1",(Meter_id,))
 
         data57 = db2_cursor.fetchall()
         db2.commit()
@@ -337,6 +336,8 @@ def data():
         Current_i2 = (data57[0][11])
         Current_i3 = (data57[0][12])
         timest = (data57[0][13])
+        reactpow = (data57[0][14])
+        reacten = (data57[0][15])
 
         # x_values1 = pd.DataFrame(data57[0])
         # x_val1 = ((x_values1.T).values.tolist())
@@ -394,7 +395,7 @@ def data():
     meter_info = str(request.form.get("meter_id"))
     # print(type(meter_info))
     data = [modbus_tm, voltage_ll, avg_current, frequency, Meter_id, average_pf, net_power, net_energy, apparent_power,
-            apparent_energy, THDP1, meter_info,Current_i1,Current_i2,Current_i3,timest]
+            apparent_energy, THDP1, meter_info,Current_i1,Current_i2,Current_i3,timest,reactpow,reacten]
     # data=[xx1(not used),average voltage,avg_current,frequency,xx2(thd),averagepf,activepower,activeenergy,apparentpower,apparent energy]
     response1 = make_response(json.dumps(data))
     response1.content_type = 'application/json'
@@ -422,8 +423,8 @@ def currentdata():
                                       port="3306")
         db2_cursor = db2.cursor()
         db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL,AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1,Current_i1,Current_i2,Current_i3,timest from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
-            (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kVA,Total_kW,Total_kVA,Total_net_kVArh, Total_kVA, Total_net_kVAh from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+            (Meter_id, str(int(datetime.now().timestamp() - 3000)), str(int(datetime.now().timestamp())),))
         data7 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
@@ -432,9 +433,7 @@ def currentdata():
         # r_values = pd.DataFrame(data7, columns=['meterID', 'time_stamp', 'voltage', 'current', 'frequency',
         #                                         'total_harmonic_distortion', 'apparent_energy', 'power_factor',
         #                                         'energy', 'power', 'apparent_power','Current_i1','Current_i2','Current_i3'])
-        r_values = pd.DataFrame(data7, columns=['time_stamp', 'voltage', 'current','total_harmonic_distortion',
-                                                 'apparent_energy', 'power_factor',
-                                                'energy', 'power', 'apparent_power','frequency','power_factor_1','Current_i1','Current_i2','Current_i3','tstmp'])
+        r_values = pd.DataFrame(data7, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'])
         r_val = ((r_values).values.tolist())
         print(r_val)
         print("data transferred to html")
@@ -519,22 +518,18 @@ def getPlotCSV():
                                       port="3306")
         db2_cursor = db2.cursor()
         db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL,AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1  from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
-            (Meter_id, str(int(datetime.now().timestamp() - 1500)), str(int(datetime.now().timestamp())),))
+            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kVA,Total_kW,Total_kVA,Total_net_kVArh, Total_kVA, Total_net_kVAh from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+            (Meter_id, str(int(datetime.now().timestamp() - 3000)), str(int(datetime.now().timestamp())),))
         data18 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
-        m_values = pd.DataFrame(data18, columns=['meterID', 'Modbus_time', 'AVG_voltage_LL', 'THDP1', 'frequency',
-                                                 'total_harmonic_distortion', 'apparent_energy', 'power_factor',
-                                                 'energy', 'power', 'apparent_power'])
+        m_values = pd.DataFrame(data18, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh',' Total_kVA', 'Total_net_kVAh'])
         m_val = ((m_values.T).values.tolist())
         m_value_c = m_val[0][0]
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
         sensor_data_frame = pd.DataFrame(m_val)
-        csv = m_values.to_string(columns=['meterID', 'Modbus_time', 'AVG_voltage_LL', 'THDP1', 'frequency',
-                                          'total_harmonic_distortion', 'apparent_energy', 'power_factor',
-                                          'energy', 'power', 'apparent_power'], header='false', index='false')
+        csv = m_values.to_string(columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh',' Total_kVA', 'Total_net_kVAh'], header='false', index='false')
 
     return Response(
         m_values.to_csv(index=False),
@@ -783,12 +778,15 @@ def current_data():
     return render_template('ems_test_v22.html', data1=(t2_val), data2=(data8))
 
 
-@app.route("/mapping")
+@app.route("/mapping",methods=["GET", "POST"])
 def mapping():
     if not g.user:
         print("session not valid")
         return redirect(url_for('login'))
     print("session valid")
+    global Meter_id
+
+    Meter_id = request.form.get("meter_id")
     return render_template('mapping.html')
 
 @app.route("/meterstatus",methods=["GET", "POST"])
