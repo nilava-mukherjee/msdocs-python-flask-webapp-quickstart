@@ -579,6 +579,25 @@ def historical():
     global start_time
     global end_time
     global meterID_H
+    h_val=[]
+    data0=[]
+    data1 = []
+    data2 = []
+    data3 = []
+    data4 = []
+    data5 = []
+    data6 = []
+    data7 = []
+    data8 = []
+    data9 = []
+    data10 = []
+    data11 = []
+    data12 = []
+    data13 = []
+    data14 = []
+
+
+    h_val_map=[]
     meterID_H = request.form.get("Meter_id")
     print(meterID_H)
     print(type(meterID_H))
@@ -602,93 +621,96 @@ def historical():
 
         data8 = db2_cursor.fetchall()
         print(data8)
-        db2.commit()
-        db2.close()
-        h_values = pd.DataFrame(data8, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh','Total_kVA','Total_net_kVAh','timest'])
+        if(data8!=[]):
+            db2.commit()
+            db2.close()
+            h_values = pd.DataFrame(data8, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh','Total_kVA','Total_net_kVAh','timest'])
 
-        h_val = ((h_values).values.tolist())
+            h_val = ((h_values).values.tolist())
 
-        print(f"test{h_val}")
-        h_value_c = h_val[0][0]
-        h_val_map = list(map(json.dumps, h_val))
-        print(len(h_val))
+            print(f"test{h_val}")
+            h_value_c = h_val[0][0]
+            h_val_map = list(map(json.dumps, h_val))
+            print(len(h_val))
 
 
-        data0 = []
-        for i in range(1, 2):
-            for j in range(len(h_val)):
-                data0.append(h_val[j][i])
+            data0 = []
+            for i in range(1, 2):
+                for j in range(len(h_val)):
+                    data0.append(h_val[j][i])
 
-        data1 = []  # selecting the list elements
-        for i in range(2, 3):
-            for j in range(len(h_val)):
-                data1.append(h_val[j][i])
+            data1 = []  # selecting the list elements
+            for i in range(2, 3):
+                for j in range(len(h_val)):
+                    data1.append(h_val[j][i])
 
-        data2 = []
-        for i in range(3, 4):
-            for j in range(len(h_val)):
-                data2.append(h_val[j][i])
+            data2 = []
+            for i in range(3, 4):
+                for j in range(len(h_val)):
+                    data2.append(h_val[j][i])
 
-        data3 = []
-        for i in range(4, 5):
-            for j in range(len(h_val)):
-                data3.append(h_val[j][i])
+            data3 = []
+            for i in range(4, 5):
+                for j in range(len(h_val)):
+                    data3.append(h_val[j][i])
 
-        data4 = []
-        for i in range(5, 6):
-            for j in range(len(h_val)):
-                data4.append(h_val[j][i])
+            data4 = []
+            for i in range(5, 6):
+                for j in range(len(h_val)):
+                    data4.append(h_val[j][i])
 
-        data5 = []
-        for i in range(6, 7):
-            for j in range(len(h_val)):
-                data5.append(h_val[j][i])
+            data5 = []
+            for i in range(6, 7):
+                for j in range(len(h_val)):
+                    data5.append(h_val[j][i])
 
-        data6 = []
-        for i in range(7, 8):
-            for j in range(len(h_val)):
-                data6.append(h_val[j][i])
+            data6 = []
+            for i in range(7, 8):
+                for j in range(len(h_val)):
+                    data6.append(h_val[j][i])
 
-        data7 = []
-        for i in range(8, 9):
-            for j in range(len(h_val)):
-                data7.append(h_val[j][i])
+            data7 = []
+            for i in range(8, 9):
+                for j in range(len(h_val)):
+                    data7.append(h_val[j][i])
 
-        data8 = []
-        for i in range(9, 10):
-            for j in range(len(h_val)):
-                data8.append(h_val[j][i])
+            data8 = []
+            for i in range(9, 10):
+                for j in range(len(h_val)):
+                    data8.append(h_val[j][i])
 
-        data9 = []
-        for i in range(10, 11):
-            for j in range(len(h_val)):
-                data9.append(h_val[j][i])
+            data9 = []
+            for i in range(10, 11):
+                for j in range(len(h_val)):
+                    data9.append(h_val[j][i])
 
-        data10 = []
-        for i in range(11, 12):
-            for j in range(len(h_val)):
-                data10.append(int(h_val[j][i]))
+            data10 = []
+            for i in range(11, 12):
+                for j in range(len(h_val)):
+                    data10.append(int(h_val[j][i]))
 
-        data11 = []
-        for i in range(12, 13):
-            for j in range(len(h_val)):
-                data11.append(int(h_val[j][i]))
+            data11 = []
+            for i in range(12, 13):
+                for j in range(len(h_val)):
+                    data11.append(int(h_val[j][i]))
 
-        data12 = []
-        for i in range(13, 14):
-            for j in range(len(h_val)):
-                data12.append(int(h_val[j][i]))
+            data12 = []
+            for i in range(13, 14):
+                for j in range(len(h_val)):
+                    data12.append(int(h_val[j][i]))
 
-        data13 = []
-        for i in range(14, 15):
-            for j in range(len(h_val)):
-                data13.append(int(h_val[j][i]))
+            data13 = []
+            for i in range(14, 15):
+                for j in range(len(h_val)):
+                    data13.append(int(h_val[j][i]))
 
-        data14 = []
-        for i in range(15, 16):
-            for j in range(len(h_val)):
-                data14.append(int(h_val[j][i]))
+            data14 = []
+            for i in range(15, 16):
+                for j in range(len(h_val)):
+                    data14.append(int(h_val[j][i]))
 
+        else:
+            data14=0
 
 
 
@@ -712,6 +734,8 @@ def historicdwnld():
     global start_time
     global end_time
     global meterID_H
+    t1_val=[]
+    t1_values = []
 
     if not g.user:
         print("session not valid")
@@ -729,9 +753,15 @@ def historicdwnld():
         db2.commit()
         db2.close()
         print(data5)
-        t1_values = pd.DataFrame(data5, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'])
-        t1_val = ((t1_values.T).values.tolist())
-        t1_value_c = t1_val[0][0]
+        if(data5!=[]):
+            t1_values = pd.DataFrame(data5, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'])
+            t1_val = ((t1_values.T).values.tolist())
+            t1_value_c = t1_val[0][0]
+        else:
+            data5=[('N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A')]
+            t1_values = pd.DataFrame(data5, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'])
+            t1_val = ((t1_values.T).values.tolist())
+            t1_value_c = t1_val[0][0]
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
         sensor_data_frame = pd.DataFrame(t1_val)
