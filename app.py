@@ -598,24 +598,21 @@ def historical():
                                       host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                       port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL, AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1,timest  from trialbsl WHERE Meter_id =%s and timest between %s and %s",
-            (Meter_id,start_time,end_time,))
+        db2_cursor.execute("SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kVA,Total_kW,Total_kVA,Total_net_kVArh,Total_kVA,Total_net_kVAh,timest from trialbsl WHERE Meter_id =%s and timest between %s and %s",(meterID_H,start_time,end_time,))
+
         data8 = db2_cursor.fetchall()
         print(data8)
         db2.commit()
         db2.close()
-        h_values = pd.DataFrame(data8, columns=['Modbus_time', 'AVG_voltage_LL', 'AVG_current','THDP1','Total_kVA','AVG_pf','Total_net_kWh','Total_kW','Total_kVA','Frequency','pf1',"timest"])
+        h_values = pd.DataFrame(data8, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh','Total_kVA','Total_net_kVAh','timest'])
 
         h_val = ((h_values).values.tolist())
+
+        print(f"test{h_val}")
         h_value_c = h_val[0][0]
         h_val_map = list(map(json.dumps, h_val))
         print(len(h_val))
 
-        data0x = []
-        for i in range(11, 12):
-            for j in range(len(h_val)):
-                data0x.append(int(h_val[j][i]))
 
         data0 = []
         for i in range(1, 2):
@@ -667,24 +664,47 @@ def historical():
             for j in range(len(h_val)):
                 data9.append(h_val[j][i])
 
+        data10 = []
+        for i in range(11, 12):
+            for j in range(len(h_val)):
+                data10.append(int(h_val[j][i]))
+
+        data11 = []
+        for i in range(12, 13):
+            for j in range(len(h_val)):
+                data11.append(int(h_val[j][i]))
+
+        data12 = []
+        for i in range(13, 14):
+            for j in range(len(h_val)):
+                data12.append(int(h_val[j][i]))
+
+        data13 = []
+        for i in range(14, 15):
+            for j in range(len(h_val)):
+                data13.append(int(h_val[j][i]))
+
+        data14 = []
+        for i in range(15, 16):
+            for j in range(len(h_val)):
+                data14.append(int(h_val[j][i]))
+
+
+
+
 
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     response5 = make_response(json.dumps(h_val_map))
     response5.content_type = 'application/json'
-    print(data9)
-    print(data0)
-    print(data0x[0])
 
-    print(type(data0))
-    print(type(data0[0]))
 
 
 
 
 
     return render_template("historic.html", data=(h_val),data0=(data0), data1=(data1), data2=(data2), data3=(data3),
-                           data4=(data4), data5=(data5), data6=(data6), data7=(data7), data8=(data8), data9=(data9), data0x=(data0x))
+                           data4=(data4), data5=(data5), data6=(data6), data7=(data7), data8=(data8), data9=(data9), data10=(data10), data11=(data11), data12=(data12), data13=(data13), data14=(data14))
 
 
 @app.route("/historicdwnld")
@@ -704,18 +724,18 @@ def historicdwnld():
                                       host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                       port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Modbus_time,AVG_voltage_LL, AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1  from trialbsl WHERE Meter_id =%s and timest between %s and %s",(Meter_id,start_time,end_time))
+        db2_cursor.execute("SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kVA,Total_kW,Total_kVA,Total_net_kVArh, Total_kVA, Total_net_kVAh  from trialbsl WHERE Meter_id =%s and timest between %s and %s",(meterID_H,start_time,end_time))
         data5 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
         print(data5)
-        t1_values = pd.DataFrame(data5, columns=['Modbus_time','AVG_voltage_LL', 'AVG_current','THDP1','Total_kVA','AVG_pf','Total_net_kWh','Total_kW','Total_kVA','Frequency','pf1'])
+        t1_values = pd.DataFrame(data5, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'])
         t1_val = ((t1_values.T).values.tolist())
         t1_value_c = t1_val[0][0]
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
         sensor_data_frame = pd.DataFrame(t1_val)
-        csv = t1_values.to_string(columns=['Modbus_time','AVG_voltage_LL', 'AVG_current','THDP1','Total_kVA','AVG_pf','Total_net_kWh','Total_kW','Total_kVA','Frequency','pf1'], header='false', index='false')
+        csv = t1_values.to_string(columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'], header='false', index='false')
 
     return Response(
         t1_values.to_csv(index=False),
