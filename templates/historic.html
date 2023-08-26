@@ -22,19 +22,16 @@
 
 
 </head>
-<body style="height: 1080px; width: 1920px">
+<body style="height: 100%; width: 100%">
      <!-- including navbar using jinja -->
      {% include 'navbar.html' %}
-
-
-    
-        <h1>Historic Data</h1>
-        <div class="form_pick" style="gap: 20px;">
+<div class="form_pick" style="gap: 20px;">
             <form method="post" action="/historicaldata" style="margin:10px; display:flex; gap:10px;">
-              <div class="date_time_pick">
+             <div clas="meterbox2"> 
               <label for="MeterNo.">Select Date-time :</label>       
               <input class="daterange" type="text" name="daterange" size="40"/>
-              </div>
+	</div>
+              
                 <script type="text/javascript">
                 $(function() {
                   $('input[name="daterange"]').daterangepicker({
@@ -47,8 +44,7 @@
                   });
                 });
                 </script>
-              <br>
-              <br>
+
               <div class="meterbox">
                 <label for="MeterNo.">Select Meter No. :</label>
                   <select class="meterid" id="meterid" name="Meter_id" type="text" placeholder ="Please select a meter">
@@ -75,22 +71,27 @@
                     Download
                 </a>
             </div>
+	<div><p id="err"></p></div>
         </div>
 		
         <div class="table">
             <table id="datatable" style="width: 100%">
                 <tr>
                   <th>Modbus Time</th>
-				  <th>Average Voltage</th>
-                  <th>Average Current</th>
-				  <th>THDP1</th>
-                  <th>Total_KVA</th>
-                  <th>AVG_pf</th>
-                  <th>Total_net_kWh</th>
-                  <th>Total_kW</th>
-                  <th>Total_kVA</th>
-                  <th>Frequency</th>
-				  <th>pf1</th>
+				  <th>Average Voltage </th>
+				  <th>Current_i1</th>
+				  <th>Current_i2</th>
+				  <th>Current_i3</th>
+				  <th>Average Current </th>
+				  <th>Frequency</th>
+				  <th>Average Power Factor</th>
+				  <th>Total Harmonic Distortion</th>
+				  <th>Active Power</th>
+				  <th>Active Energy</th>
+				  <th>Reactive Power</th>
+				  <th>Reactive Energy</th> 
+				  <th>Apparent Power</th>
+				  <th>Apparent Energy</th>
 				  <th>Timestamp</th>
 
                 </tr>
@@ -104,17 +105,14 @@
               </table>
         </div>
 
-    
-		
-
-    <br>
-    <br>
-    <br>
 
       <div id="container">
     
 
 <script>
+	var date = new Date(parseInt({{ data14 }}));
+	console.log(date);
+	console.log("test");
 	
 
 Highcharts.chart('container', {
@@ -135,7 +133,7 @@ Highcharts.chart('container', {
     
     xAxis: {
             type: 'datetime',
-            categories: {{ data0x }}
+            categories: {{ data14 }}
         },
     
     legend: {
@@ -152,58 +150,80 @@ Highcharts.chart('container', {
             
         }
     },
-    series: [{
-        name: 'AVG_voltage_LL',
+    series: [
+    {
+        name: 'Average Voltage',
         data: {{ data0 }},
 
     },
     {
-        name: 'AVG_current',
+        name: 'Current_i1',
         data: {{ data1 }},
 
     },
     {
-        name: 'THDP1',
+        name: 'Current_i2',
         data: {{ data2 }},
-
-    }
-				 ,
-    {
-        name: 'Total_kVA',
-        data: {{ data3 }},
 
     }, 
     {
-        name: 'AVG_pf',
+        name: 'Current_i3',
+        data: {{ data3 }},
+
+    },
+    {
+        name: 'Average Current',
         data: {{ data4 }},
 
     },
     {
-        name: 'Total_net_kWh',
+        name: 'Frequency',
         data: {{ data5 }},
 
     },
     {
-        name: 'Total_kW',
+        name: 'Average Power Factor',
         data: {{ data6 }},
 
     },
     {
-        name: 'Total_kVA',
+        name: 'Total Harmonic Distortion',
         data: {{ data7 }},
 
     },
-    {
-        name: 'Frequency',
+	{
+       name: 'Active Power',
         data: {{ data8 }},
 
-    },
-				 {
-        name: 'pf1',
+    },			 
+	{
+       name: 'Active Energy',
         data: {{ data9 }},
 
-    }],
+    },	
+    {
+      name: 'Reactive Power',
+        data: {{ data10 }},
+
+    },			 
+	{
+      name: 'Reactive Energy',
+        data: {{ data11 }},
+
+    },
+    {
+       name: 'Apparent Power',
+        data: {{ data12 }},
+
+    },			 
+    {
+      name: 'Apparent Energy',
+        data: {{ data13 }},
+
     
+
+    }],
+   
     responsive: {
         rules: [{
             condition: {
@@ -221,7 +241,19 @@ Highcharts.chart('container', {
 });
 </script>
 		  </div>
-</body>
+	
+				<script>
+function myFunction() {
+	var x={{data14}};
+	
+	if(x==0)
+	{
+  document.getElementById("err").innerHTML = "*Meter No. or Time-range is not selected.";
+	}
+}
+myFunction();
+</script>
+</body >
 <style>
 body{
     background-color: bisque;
@@ -231,17 +263,27 @@ body{
     row-gap: 40px;
 }
 .submit{
-    height: 35px;
+    height: 38px;
+	width: 100px;
 }
+	.meterid{
+		height: 38px;
+	width: 110px;
+		
+	}
 .submitbtn{
     display: flex;
     align-items: center;
+	
 }
 .downloadbtn{
     display: flex;
     align-items: center;
     position: relative;
     right: 0px;
+	top: 26px;
+	height: 24px;
+	width: 110px;
 }
 .downloadbtn a{
 	display: block;
@@ -270,18 +312,29 @@ body{
 }
 .daterange{
     height: 30px;
+			height: 16px;
+	width: 225px;
+	padding: 14px;
+	
 }
 .meterbox{
   padding: 10px;
 
 }
+	.meterbox2{
+  padding: 10px;
+		
+
+}
+	
+	
 	
 #datatable{
   overflow-y: scroll;
   overflow-x: scroll;
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  
 	
 }
 
@@ -304,5 +357,25 @@ body{
     margin-top: 20px;
 	position: relative;
 }
+	.table{  
+
+    padding: 20px;
+    height: 450px;
+    overflow: auto;
+    overflow-y: scroll;
+	padding: 10px;
+	border-style:groove;
+	border-color:black;
+	border-width:thin;
+		font-size: 15px;
+	
+		
+}
+	#err{
+		color: red;
+		font-size: 20px;
+		
+		
+	}
 </style>
 </html>
