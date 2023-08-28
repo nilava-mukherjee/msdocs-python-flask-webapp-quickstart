@@ -311,7 +311,7 @@ def data():
                                           host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                           port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Modbus_time, AVG_voltage_LL, AVG_current, Frequency, AVG_pf, Total_kw, Total_net_kWh, Total_kVA, Total_net_kVAh, THDP1,Current_i1, Current_i2, Current_i3, timest,Total_kVA,Total_net_kVArh from trialbsl  where Meter_id =%s order by dataid desc limit 1",(Meter_id,))
+        db2_cursor.execute("SELECT Modbus_time, AVG_voltage_LL, AVG_current, Frequency, AVG_pf, Total_kw, Total_net_kWh, Total_kVA, Total_net_kVAh, THDP1,Current_i1, Current_i2, Current_i3, timest,Total_kVAr,Total_net_kVArh from trialbsl  where Meter_id =%s order by dataid desc limit 1",(Meter_id,))
 
         data57 = db2_cursor.fetchall()
         db2.commit()
@@ -423,7 +423,7 @@ def currentdata():
                                       port="3306")
         db2_cursor = db2.cursor()
         db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kVA,Total_kW,Total_kVA,Total_net_kVArh, Total_kVA, Total_net_kVAh from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kW,Total_net_kWh,Total_kVAr,Total_net_kVArh, Total_kVA, Total_net_kVAh from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
             (Meter_id, str(int(datetime.now().timestamp() - 3000)), str(int(datetime.now().timestamp())),))
         data7 = db2_cursor.fetchall()
         db2.commit()
@@ -433,7 +433,7 @@ def currentdata():
         # r_values = pd.DataFrame(data7, columns=['meterID', 'time_stamp', 'voltage', 'current', 'frequency',
         #                                         'total_harmonic_distortion', 'apparent_energy', 'power_factor',
         #                                         'energy', 'power', 'apparent_power','Current_i1','Current_i2','Current_i3'])
-        r_values = pd.DataFrame(data7, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'])
+        r_values = pd.DataFrame(data7, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kW','Total_net_kWh','Total_kVAr','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'])
         r_val = ((r_values).values.tolist())
         print(r_val)
         print("data transferred to html")
@@ -518,18 +518,18 @@ def getPlotCSV():
                                       port="3306")
         db2_cursor = db2.cursor()
         db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kVA,Total_kW,Total_kVA,Total_net_kVArh, Total_kVA, Total_net_kVAh from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kW,Total_net_kWh,Total_kVAr,Total_net_kVArh, Total_kVA, Total_net_kVAh from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
             (Meter_id, str(int(datetime.now().timestamp() - 3000)), str(int(datetime.now().timestamp())),))
         data18 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
-        m_values = pd.DataFrame(data18, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh',' Total_kVA', 'Total_net_kVAh'])
+        m_values = pd.DataFrame(data18, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kW','Total_net_kWh','Total_kVAr','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'])
         m_val = ((m_values.T).values.tolist())
         m_value_c = m_val[0][0]
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
         sensor_data_frame = pd.DataFrame(m_val)
-        csv = m_values.to_string(columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh',' Total_kVA', 'Total_net_kVAh'], header='false', index='false')
+        csv = m_values.to_string(columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kW','Total_net_kWh','Total_kVAr','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'], header='false', index='false')
 
     return Response(
         m_values.to_csv(index=False),
@@ -617,14 +617,14 @@ def historical():
                                       host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                       port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kVA,Total_kW,Total_kVA,Total_net_kVArh,Total_kVA,Total_net_kVAh,timest from trialbsl WHERE Meter_id =%s and timest between %s and %s",(meterID_H,start_time,end_time,))
+        db2_cursor.execute("SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kW,Total_net_kWh,Total_kVAr,Total_net_kVArh, Total_kVA, Total_net_kVAh,timest from trialbsl WHERE Meter_id =%s and timest between %s and %s",(meterID_H,start_time,end_time,))
 
         data8 = db2_cursor.fetchall()
         print(data8)
         if(data8!=[]):
             db2.commit()
             db2.close()
-            h_values = pd.DataFrame(data8, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kVA','Total_kW','Total_kVA','Total_net_kVArh','Total_kVA','Total_net_kVAh','timest'])
+            h_values = pd.DataFrame(data8, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kW','Total_net_kWh','Total_kVAr','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh','timest'])
 
             h_val = ((h_values).values.tolist())
 
