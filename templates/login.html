@@ -18,7 +18,7 @@
 	<br>
 	<img src ="{{url_for('static', filename='BSP.png')}}" alt="" height="15%" width="15%">
 		<br>
-		<img src ="{{url_for('static', filename='emonitorlogo.png')}}" alt=""height="10%" width="10%">
+		<img src ="{{url_for('static', filename='emonitorlogo.png')}}" alt="" height="10%" width="10%">
 		<br>
 		
 		
@@ -39,8 +39,12 @@
 </body>
 <style>
 Body {
-    background-color: bisque;
-	position: relative;
+    background-repeat: no-repeat;
+		background-position:top;
+		
+    
+    background-size:cover;
+    background-image: url("/static/transmission2.jpg")
 }
 button {   
     background-color: #00A9D4;   
