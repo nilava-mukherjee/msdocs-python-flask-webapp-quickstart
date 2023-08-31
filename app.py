@@ -81,8 +81,10 @@ def data():
     Current_i2=0
     Current_i3=0
     timest=0
+    crtm=str((int(datetime.now().timestamp())-360)*1000)
     st1= str(int(datetime.now().timestamp() - 1500))
     end1= str(int(datetime.now().timestamp()))
+    print(crtm)
     # try:
     #     db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
     #                                   host="server050641860.mysql.database.azure.com", database="bokaro_ems",
@@ -322,22 +324,41 @@ def data():
         print(type(data57[0]))
         print(data57[0][0])
         print(type(data57[0][0]))
-        modbus_tm = (data57[0][0])
-        voltage_ll = (data57[0][1])
-        avg_current = (data57[0][2])
-        frequency = (data57[0][3])
-        average_pf = (data57[0][4])
-        net_power = (data57[0][5])
-        net_energy = (data57[0][6])
-        apparent_power = (data57[0][7])
-        apparent_energy = (data57[0][8])
-        THDP1 = (data57[0][9])
-        Current_i1 = (data57[0][10])
-        Current_i2 = (data57[0][11])
-        Current_i3 = (data57[0][12])
-        timest = (data57[0][13])
-        reactpow = (data57[0][14])
-        reacten = (data57[0][15])
+        if((data57[0][13])>=crtm):
+            modbus_tm = (data57[0][0])
+            voltage_ll = (data57[0][1])
+            avg_current = (data57[0][2])
+            frequency = (data57[0][3])
+            average_pf = (data57[0][4])
+            net_power = (data57[0][5])
+            net_energy = (data57[0][6])
+            apparent_power = (data57[0][7])
+            apparent_energy = (data57[0][8])
+            THDP1 = (data57[0][9])
+            Current_i1 = (data57[0][10])
+            Current_i2 = (data57[0][11])
+            Current_i3 = (data57[0][12])
+            timest = (data57[0][13])
+            reactpow = (data57[0][14])
+            reacten = (data57[0][15])
+        else:
+            modbus_tm = 0
+            voltage_ll = 0
+            avg_current = 0
+            frequency = 0
+            average_pf = 0
+            net_power = 0
+            net_energy = 0
+            apparent_power = 0
+            apparent_energy = 0
+            THDP1 = 0
+            Current_i1 = 0
+            Current_i2 = 0
+            Current_i3 = 0
+            timest = 0
+            reactpow = 0
+            reacten = 0
+
 
         # x_values1 = pd.DataFrame(data57[0])
         # x_val1 = ((x_values1.T).values.tolist())
@@ -523,9 +544,15 @@ def getPlotCSV():
         data18 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
-        m_values = pd.DataFrame(data18, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kW','Total_net_kWh','Total_kVAr','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'])
-        m_val = ((m_values.T).values.tolist())
-        m_value_c = m_val[0][0]
+        if (data18!=[]):
+            m_values = pd.DataFrame(data18, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kW','Total_net_kWh','Total_kVAr','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'])
+            m_val = ((m_values.T).values.tolist())
+            m_value_c = m_val[0][0]
+        else:
+            data18=[('N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A', 'N/A', 'N/A')]
+            m_values = pd.DataFrame(data18, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kW','Total_net_kWh','Total_kVAr','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'])
+            m_val = ((m_values.T).values.tolist())
+            m_value_c = m_val[0][0]
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
         sensor_data_frame = pd.DataFrame(m_val)
