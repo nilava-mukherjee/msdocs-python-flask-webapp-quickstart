@@ -1291,13 +1291,17 @@ setInterval(function(){updateChart()}, updateInterval);
 </script>
 				<script>
 function myFunction() {
-	var x={{data2}};
 	var y={{data1}};
-	if(x==0 && y==0){
+					
+	if(y==0) 
+	{
   document.getElementById("demo").innerHTML = "No data is available for selected meter.";
 	}
 }
 myFunction();
+					setInterval(1000);
+					
+					
 </script>
 				
             
