@@ -66,7 +66,28 @@
   border-radius: 50%;
 }
 
+.button1 {
+    background-color: #212529;
+  border: none;
+  color: white;
+  padding: 2px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  margin: 0px 4px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+border-radius: 8px;
+height:48px;
+  
+}
 
+.button1:hover {
+  background-color: black;
+  color: black;
+
+  border: 2px solid #badae9;
+}
 	</style>
     
 </head>
@@ -74,11 +95,13 @@
 <body>
     <nav class="navbar navbar-expand-md bg-body py-3" data-bs-theme="dark">
         <div class="container-fluid"><a href="https://sail.co.in/"><img class="rounded" src="{{url_for('static', filename='sailbg.jpg')}}" width="50" height="50"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
+                <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item fs-1"><a class="nav-link fs-3 " href="{{ url_for('mapping') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link fs-3 " href="{{ url_for('currentdata') }}">Live</a></li>
-                    <li class="nav-item"><a class="nav-link fs-3 " href="{{ url_for('historic') }}">Historic</a></li>
+                    <li class="nav-item fs-1"><button class="button123 button1"><a class="nav-link fs-3 " href="{{ url_for('mapping') }}"><h4>Home</h4></a></button></li>
+                    <li class="nav-item"><button class="button123 button1"><a class="nav-link fs-3 " href="{{ url_for('currentdata') }}"><h4>Live Data</h4></a></button></li>
+                    <li class="nav-item"><button class="button123 button1"><a class="nav-link fs-3 " href="{{ url_for('currentdata1') }}"><h4>Meter Data</h4></a></button></li>
+                    <li class="nav-item"><button class="button123 button1"><a class="nav-link fs-3 " href="{{ url_for('historic') }}"><h4>Historic Data</h4></a></button></li>
+
                 </ul><a class="btn btn-primary fs-4  text-bg-warning ms-auto" role="button" href="{{ url_for('logout') }}">Log Out</a>
             </div>
         </div>
