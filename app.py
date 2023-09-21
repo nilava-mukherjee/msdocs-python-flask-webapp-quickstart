@@ -522,8 +522,110 @@ def currentdata():
     response4 = make_response(json.dumps(timest12))
     print(response4)
     response4.content_type = 'application/json'
-
     return render_template('ems_test_v22.html', data1=(r_val), data2=(final_en), data3=(timest12))
+@app.route("/currentdata1", methods=["GET", "POST"])
+def currentdata1():
+    if not g.user:
+        print("session not valid")
+        return redirect(url_for('login'))
+
+    print("session valid")
+    global Meter_id
+
+    Meter_id = request.form.get("meter_id")
+    if (Meter_id==None):
+        Meter_id="GMBS C05_08D"
+    print(Meter_id)
+    print(type(Meter_id))
+
+    try:
+        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                      port="3306")
+        db2_cursor = db2.cursor()
+        db2_cursor.execute(
+            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kW,Total_net_kWh,Total_kVAr,Total_net_kVArh, Total_kVA, Total_net_kVAh from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+            (Meter_id, str(int(datetime.now().timestamp() - 3000)), str(int(datetime.now().timestamp())),))
+        data7 = db2_cursor.fetchall()
+        db2.commit()
+        db2.close()
+        print(data7)
+        print("fetched data"+"\n")
+        # r_values = pd.DataFrame(data7, columns=['meterID', 'time_stamp', 'voltage', 'current', 'frequency',
+        #                                         'total_harmonic_distortion', 'apparent_energy', 'power_factor',
+        #                                         'energy', 'power', 'apparent_power','Current_i1','Current_i2','Current_i3'])
+        r_values = pd.DataFrame(data7, columns=['Modbus_time','AVG_voltage_LL','Current_i1','Current_i2','Current_i3','AVG_current','Frequency','AVG_pf','THDP1','Total_kW','Total_net_kWh','Total_kVAr','Total_net_kVArh', 'Total_kVA', 'Total_net_kVAh'])
+        r_val = ((r_values).values.tolist())
+        print(r_val)
+        print("data transferred to html")
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+    response4 = make_response(json.dumps(r_val))
+    response4.content_type = 'application/json'
+
+    try:
+        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                     port="3306")
+        db_cursor = db.cursor()
+        # stmt1 = "SELECT pf1 from trialbsl WHERE Modbus_time BETWEEN %s AND %s"
+        data_allday_yesterday = (yesterday_midnight.timestamp(), midnight.timestamp())
+        print(f"yesterday time {str(int((yesterday_midnight.timestamp()*1000)))}")
+        # data5_m = Meter_id
+        db_cursor.execute("select Total_net_kWh from bokaro_ems.trialbsl where Meter_id = %s and timest between %s and %s" , (Meter_id, str(int((yesterday_midnight.timestamp()*1000) - 500000)), str(int((yesterday_midnight.timestamp()*1000) + 500000)),))
+        data8 = db_cursor.fetchall()
+        print(data8)
+
+        db_cursor.execute("select Total_net_kWh from bokaro_ems.trialbsl where Meter_id = %s and timest between %s and %s",(Meter_id, str(int((midnight.timestamp()*1000) - 500000)), str(int((midnight.timestamp()*1000) + 500000)),))
+        data99 = db_cursor.fetchall()
+        print(data99)
+        db.commit()
+        db.close()
+        if (data99 != [] and data8 != []):
+            x_values_en = pd.DataFrame(data8)
+            print(x_values_en)
+            x_val_en = ((x_values_en.T).values.tolist())
+            y_en = (x_val_en[0][0])
+
+            x_values_en_99 = pd.DataFrame(data99)
+            print(x_values_en_99)
+            x_val_en_99 = ((x_values_en_99.T).values.tolist())
+            y_en_99 = (x_val_en_99[0][0])
+
+            final_en = y_en_99-y_en
+            print(f"yesterday energy{final_en}")
+        else:
+            final_en = 0
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+    response4 = make_response(json.dumps(final_en))
+    response4.content_type = 'application/json'
+
+    try:
+        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                      port="3306")
+        db2_cursor = db2.cursor()
+        db2_cursor.execute("SELECT Location from locbsl WHERE Meter_id =%s",(Meter_id,))
+        data88 = db2_cursor.fetchall()
+        db2.commit()
+        db2.close()
+        x_values12 = pd.DataFrame(data88)
+        print(x_values12)
+        x_val12 = ((x_values12.T).values.tolist())
+        timest12 = x_val12[0][0]
+        print("test")
+        print(type(timest12))
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+
+    response4 = make_response(json.dumps(timest12))
+    print(response4)
+    response4.content_type = 'application/json'
+    return render_template('meterstatus.html', data1=(r_val), data2=(final_en), data3=(timest12))
+
+
+
 
 
 @app.route("/getPlotCSV")
