@@ -56,7 +56,220 @@ def before_request():
 
 print("ok till 70")
 
+@app.route('/totalload', methods=['GET', 'POST'])
+def totalload():
+    try:
+        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                     port="3306")
+        db_cursor = db.cursor()
+        stmt1 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C03_10D' order by  dataid desc limit 1"
+        db_cursor.execute(stmt1)
+        data1 = db_cursor.fetchall()
 
+        if (data1 == []):
+            data101 = 0.0;
+        else:
+            data101 = data1[0][0]
+        db.commit()
+        db.close()
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+
+    try:
+        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                     port="3306")
+        db_cursor = db.cursor()
+        stmt2 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C05_08D' order by  dataid desc limit 1"
+        db_cursor.execute(stmt2)
+        data2 = db_cursor.fetchall()
+
+        if (data2 == []):
+            data20 = 0.0;
+        else:
+            data20 = data2[0][0]
+        db.commit()
+        db.close()
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+
+    try:
+        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                     port="3306")
+        db_cursor = db.cursor()
+        stmt3 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C06_09D' order by  dataid desc limit 1"
+        db_cursor.execute(stmt3)
+        data3 = db_cursor.fetchall()
+
+        if (data3 == []):
+            data30 = 0.0;
+        else:
+            data30 = data3[0][0]
+        db.commit()
+        db.close()
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+    try:
+        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                     port="3306")
+        db_cursor = db.cursor()
+        stmt4 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C08_16D' order by  dataid desc limit 1"
+        db_cursor.execute(stmt4)
+        data4 = db_cursor.fetchall()
+
+        if(data4==[]):
+            data40 = 0.0;
+        else:
+            data40 = data4[0][0]
+        db.commit()
+        db.close()
+
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+    try:
+        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                     port="3306")
+        db_cursor = db.cursor()
+        stmt5 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C09_13D' order by  dataid desc limit 1"
+        db_cursor.execute(stmt5)
+        data5 = db_cursor.fetchall()
+
+        if (data5 == []):
+            data50 = 0.0;
+        else:
+            data50 = data5[0][0]
+        db.commit()
+        db.close()
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+    try:
+        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                     port="3306")
+        db_cursor = db.cursor()
+        stmt6 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C18_14D' order by  dataid desc limit 1"
+        db_cursor.execute(stmt6)
+        data6 = db_cursor.fetchall()
+
+        if (data6 == []):
+            data60 = 0.0;
+        else:
+            data60 = data6[0][0]
+        db.commit()
+        db.close()
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+    try:
+        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                     port="3306")
+        db_cursor = db.cursor()
+        stmt7 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C19_17D' order by  dataid desc limit 1"
+        db_cursor.execute(stmt7)
+        data7 = db_cursor.fetchall()
+
+        if (data7 == []):
+            data70 = 0.0;
+        else:
+            data70 = data7[0][0]
+        db.commit()
+        db.close()
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+    try:
+        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                     port="3306")
+        db_cursor = db.cursor()
+        stmt8 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C20_18D' order by  dataid desc limit 1"
+        db_cursor.execute(stmt8)
+        data8 = db_cursor.fetchall()
+
+        if (data8 == []):
+            data80 = 0.0;
+        else:
+            data80 = data8[0][0]
+        db.commit()
+        db.close()
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+    try:
+        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                     port="3306")
+        db_cursor = db.cursor()
+        stmt9 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C21_11D' order by  dataid desc limit 1"
+        db_cursor.execute(stmt9)
+        data9 = db_cursor.fetchall()
+
+        if (data9 == []):
+            data90 = 0.0;
+        else:
+            data90 = data9[0][0]
+        db.commit()
+        db.close()
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+    try:
+        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                     port="3306")
+        db_cursor = db.cursor()
+        stmt10 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C21_11D' order by  dataid desc limit 1"
+        db_cursor.execute(stmt10)
+        data10 = db_cursor.fetchall()
+
+        if (data10 == []):
+            data100 = 0.0;
+        else:
+            data100 = data10[0][0]
+        db.commit()
+        db.close()
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+    try:
+        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
+                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+                                     port="3306")
+        db_cursor = db.cursor()
+        stmt11 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C27_15D' order by  dataid desc limit 1"
+        db_cursor.execute(stmt11)
+        data11 = db_cursor.fetchall()
+
+        if (data11 == []):
+            data110 = 0.0;
+        else:
+            data110 = data11[0][0]
+        db.commit()
+        db.close()
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+
+
+
+    print("checking data")
+
+    totalload_1 = (data101+data20+data30+data40+data50+data60+data70+data80+data90+data100+data110);
+
+    totalload_2 = (round(totalload_1, 2));
+
+    response1 = make_response(json.dumps(totalload_2))
+    response1.content_type = 'application/json'
+    return response1
 @app.route('/data', methods=["GET", "POST"])
 def data():
     print("session valid line no 74")
@@ -1014,231 +1227,5 @@ def logout():
     print("wrong req")
     print(url_for('mapping'))
     return render_template('login.html')
-
-
-@app.route('/totalload', methods=['GET', 'POST'])
-def totalload():
-    try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                     port="3306")
-        db_cursor = db.cursor()
-        stmt1 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C03_10D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt1)
-        data1 = db_cursor.fetchall()
-
-        if (data1 == []):
-            data101 = 0.0;
-        else:
-            data101 = data1[0][0]
-        db.commit()
-        db.close()
-
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-
-    try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                     port="3306")
-        db_cursor = db.cursor()
-        stmt2 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C05_08D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt2)
-        data2 = db_cursor.fetchall()
-
-        if (data2 == []):
-            data20 = 0.0;
-        else:
-            data20 = data2[0][0]
-        db.commit()
-        db.close()
-
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-
-    try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                     port="3306")
-        db_cursor = db.cursor()
-        stmt3 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C06_09D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt3)
-        data3 = db_cursor.fetchall()
-
-        if (data3 == []):
-            data30 = 0.0;
-        else:
-            data30 = data3[0][0]
-        db.commit()
-        db.close()
-
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-    try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                     port="3306")
-        db_cursor = db.cursor()
-        stmt4 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C08_16D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt4)
-        data4 = db_cursor.fetchall()
-
-        if(data4==[]):
-            data40 = 0.0;
-        else:
-            data40 = data4[0][0]
-        db.commit()
-        db.close()
-
-
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-    try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                     port="3306")
-        db_cursor = db.cursor()
-        stmt5 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C09_13D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt5)
-        data5 = db_cursor.fetchall()
-
-        if (data5 == []):
-            data50 = 0.0;
-        else:
-            data50 = data5[0][0]
-        db.commit()
-        db.close()
-
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-    try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                     port="3306")
-        db_cursor = db.cursor()
-        stmt6 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C18_14D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt6)
-        data6 = db_cursor.fetchall()
-
-        if (data6 == []):
-            data60 = 0.0;
-        else:
-            data60 = data6[0][0]
-        db.commit()
-        db.close()
-
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-    try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                     port="3306")
-        db_cursor = db.cursor()
-        stmt7 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C19_17D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt7)
-        data7 = db_cursor.fetchall()
-
-        if (data7 == []):
-            data70 = 0.0;
-        else:
-            data70 = data7[0][0]
-        db.commit()
-        db.close()
-
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-    try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                     port="3306")
-        db_cursor = db.cursor()
-        stmt8 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C20_18D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt8)
-        data8 = db_cursor.fetchall()
-
-        if (data8 == []):
-            data80 = 0.0;
-        else:
-            data80 = data8[0][0]
-        db.commit()
-        db.close()
-
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-    try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                     port="3306")
-        db_cursor = db.cursor()
-        stmt9 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C21_11D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt9)
-        data9 = db_cursor.fetchall()
-
-        if (data9 == []):
-            data90 = 0.0;
-        else:
-            data90 = data9[0][0]
-        db.commit()
-        db.close()
-
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-    try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                     port="3306")
-        db_cursor = db.cursor()
-        stmt10 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C21_11D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt10)
-        data10 = db_cursor.fetchall()
-
-        if (data10 == []):
-            data100 = 0.0;
-        else:
-            data100 = data10[0][0]
-        db.commit()
-        db.close()
-
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-    try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                     port="3306")
-        db_cursor = db.cursor()
-        stmt11 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C27_15D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt11)
-        data11 = db_cursor.fetchall()
-
-        if (data11 == []):
-            data110 = 0.0;
-        else:
-            data110 = data11[0][0]
-        db.commit()
-        db.close()
-    except mysql.connector.Error as err:
-        print("Something went wrong: {}".format(err))
-
-
-
-    print("checking data")
-
-    totalload_1 = (data101+data20+data30+data40+data50+data60+data70+data80+data90+data100+data110);
-
-    totalload_2 = (round(totalload_1, 2));
-    print(totalload_1)
-    print(totalload_2)
-    print("testing totalnetkw")
-
-    response1 = make_response(json.dumps(totalload_2))
-    response1.content_type = 'application/json'
-    return response1
-
-
-
-
-
-
-
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
