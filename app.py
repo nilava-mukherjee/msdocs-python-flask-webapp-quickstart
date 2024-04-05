@@ -58,19 +58,20 @@ print("ok till 70")
 
 @app.route('/totalload', methods=['GET', 'POST'])
 def totalload():
+    stm = str(int(datetime.now().timestamp() - 900))
+    stme = str(int(datetime.now().timestamp()))
     try:
         db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                      port="3306")
         db_cursor = db.cursor()
-        stmt1 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C03_10D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt1)
+        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C03_10D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data1 = db_cursor.fetchall()
 
         if (data1 == []):
             data101 = 0.0;
         else:
-            data101 = data1[0][0]
+            data101 = (data1[0][-1])-(data1[0][-1])
         db.commit()
         db.close()
 
@@ -82,8 +83,7 @@ def totalload():
                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                      port="3306")
         db_cursor = db.cursor()
-        stmt2 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C05_08D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt2)
+        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C05_08D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data2 = db_cursor.fetchall()
 
         if (data2 == []):
@@ -101,8 +101,7 @@ def totalload():
                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                      port="3306")
         db_cursor = db.cursor()
-        stmt3 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C06_09D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt3)
+        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C06_09D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data3 = db_cursor.fetchall()
 
         if (data3 == []):
@@ -119,8 +118,7 @@ def totalload():
                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                      port="3306")
         db_cursor = db.cursor()
-        stmt4 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C08_16D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt4)
+        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C08_16D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data4 = db_cursor.fetchall()
 
         if(data4==[]):
@@ -138,8 +136,7 @@ def totalload():
                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                      port="3306")
         db_cursor = db.cursor()
-        stmt5 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C09_13D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt5)
+        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C09_13D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data5 = db_cursor.fetchall()
 
         if (data5 == []):
@@ -156,8 +153,7 @@ def totalload():
                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                      port="3306")
         db_cursor = db.cursor()
-        stmt6 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C18_14D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt6)
+        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C18_14D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data6 = db_cursor.fetchall()
 
         if (data6 == []):
@@ -174,8 +170,7 @@ def totalload():
                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                      port="3306")
         db_cursor = db.cursor()
-        stmt7 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C19_17D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt7)
+        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C19_17D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data7 = db_cursor.fetchall()
 
         if (data7 == []):
@@ -192,8 +187,7 @@ def totalload():
                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                      port="3306")
         db_cursor = db.cursor()
-        stmt8 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C20_18D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt8)
+        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C20_18D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data8 = db_cursor.fetchall()
 
         if (data8 == []):
@@ -210,8 +204,7 @@ def totalload():
                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                      port="3306")
         db_cursor = db.cursor()
-        stmt9 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C21_11D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt9)
+        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C21_11D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data9 = db_cursor.fetchall()
 
         if (data9 == []):
@@ -228,8 +221,7 @@ def totalload():
                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                      port="3306")
         db_cursor = db.cursor()
-        stmt10 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C21_11D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt10)
+        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C21_11D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data10 = db_cursor.fetchall()
 
         if (data10 == []):
@@ -246,8 +238,7 @@ def totalload():
                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
                                      port="3306")
         db_cursor = db.cursor()
-        stmt11 = "SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C27_15D' order by  dataid desc limit 1"
-        db_cursor.execute(stmt11)
+        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C27_15D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data11 = db_cursor.fetchall()
 
         if (data11 == []):
