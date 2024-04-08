@@ -61,11 +61,11 @@ def totalload():
     stm = str(int(datetime.now().timestamp() - 900))
     stme = str(int(datetime.now().timestamp()))
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
-        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C03_10D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
+        db_cursor.execute("SELECT Total_kW FROM armatric_bsl_db.gmbs_live where Meter_id= 'GMBS C03_10D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data1 = db_cursor.fetchall()
 
         if (data1 == []):
@@ -79,11 +79,11 @@ def totalload():
         print("Something went wrong: {}".format(err))
 
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
-        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C05_08D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
+        db_cursor.execute("SELECT Total_kW FROM armatric_bsl_db.gmbs_live where Meter_id= 'GMBS C05_08D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data2 = db_cursor.fetchall()
 
         if (data2 == []):
@@ -97,11 +97,11 @@ def totalload():
         print("Something went wrong: {}".format(err))
 
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
-        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C06_09D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
+        db_cursor.execute("SELECT Total_kW FROM armatric_bsl_db.gmbs_live where Meter_id= 'GMBS C06_09D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data3 = db_cursor.fetchall()
 
         if (data3 == []):
@@ -114,11 +114,11 @@ def totalload():
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
-        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C08_16D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
+        db_cursor.execute("SELECT Total_kW FROM armatric_bsl_db.gmbs_live where Meter_id= 'GMBS C08_16D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data4 = db_cursor.fetchall()
 
         if(data4==[]):
@@ -132,11 +132,11 @@ def totalload():
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
-        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C09_13D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
+        db_cursor.execute("SELECT Total_kW FROM armatric_bsl_db.gmbs_live where Meter_id= 'GMBS C09_13D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data5 = db_cursor.fetchall()
 
         if (data5 == []):
@@ -149,11 +149,11 @@ def totalload():
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
-        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C18_14D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
+        db_cursor.execute("SELECT Total_kW FROM armatric_bsl_db.gmbs_live where Meter_id= 'GMBS C18_14D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data6 = db_cursor.fetchall()
 
         if (data6 == []):
@@ -166,11 +166,11 @@ def totalload():
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
-        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C19_17D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
+        db_cursor.execute("SELECT Total_kW FROM armatric_bsl_db.gmbs_live where Meter_id= 'GMBS C19_17D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data7 = db_cursor.fetchall()
 
         if (data7 == []):
@@ -183,11 +183,11 @@ def totalload():
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
-        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C20_18D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
+        db_cursor.execute("SELECT Total_kW FROM armatric_bsl_db.gmbs_live where Meter_id= 'GMBS C20_18D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data8 = db_cursor.fetchall()
 
         if (data8 == []):
@@ -200,11 +200,11 @@ def totalload():
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
-        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C21_11D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
+        db_cursor.execute("SELECT Total_kW FROM armatric_bsl_db.gmbs_live where Meter_id= 'GMBS C21_11D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data9 = db_cursor.fetchall()
 
         if (data9 == []):
@@ -217,11 +217,11 @@ def totalload():
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
-        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C21_11D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
+        db_cursor.execute("SELECT Total_kW FROM armatric_bsl_db.gmbs_live where Meter_id= 'GMBS C21_11D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data10 = db_cursor.fetchall()
 
         if (data10 == []):
@@ -234,11 +234,11 @@ def totalload():
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
-        db_cursor.execute("SELECT Total_kW FROM bokaro_ems.trialbsl where Meter_id= 'GMBS C27_15D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
+        db_cursor.execute("SELECT Total_kW FROM armatric_bsl_db.gmbs_live where Meter_id= 'GMBS C27_15D' and timest between %s and %s order by  dataid desc limit 1",(stm,stme,))
         data11 = db_cursor.fetchall()
 
         if (data11 == []):
@@ -290,11 +290,11 @@ def data():
     end1= str(int(datetime.now().timestamp()))
     print(crtm)
     try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                          host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                          port="3306")
+        db2 = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
+                                     port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Modbus_time, AVG_voltage_LL, AVG_current, Frequency, AVG_pf, Total_kw, Total_net_kWh, Total_kVA, Total_net_kVAh, THDP1,Current_i1, Current_i2, Current_i3, timest,Total_kVAr,Total_net_kVArh from trialbsl  where Meter_id =%s order by dataid desc limit 1",(Meter_id,))
+        db2_cursor.execute("SELECT Modbus_time, AVG_voltage_LL, AVG_current, Frequency, AVG_pf, Total_kw, Total_net_kWh, Total_kVA, Total_net_kVAh, THDP1,Current_i1, Current_i2, Current_i3, timest,Total_kVAr,Total_net_kVArh from armatric_bsl_db.gmbs_live  where Meter_id =%s order by dataid desc limit 1",(Meter_id,))
 
         data57 = db2_cursor.fetchall()
         db2.commit()
@@ -370,12 +370,12 @@ def currentdata():
     print(type(Meter_id))
 
     try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
+        db2 = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
+                                     port="3306")
         db2_cursor = db2.cursor()
         db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kW,Total_net_kWh,Total_kVAr,Total_net_kVArh, Total_kVA, Total_net_kVAh from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kW,Total_net_kWh,Total_kVAr,Total_net_kVArh, Total_kVA, Total_net_kVAh from armatric_bsl_db.gmbs_live WHERE Meter_id =%s  and timest between %s and %s",
             (Meter_id, str(int(datetime.now().timestamp() - 3000)), str(int(datetime.now().timestamp())),))
         data7 = db2_cursor.fetchall()
         db2.commit()
@@ -395,19 +395,19 @@ def currentdata():
     response4.content_type = 'application/json'
 
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
         # stmt1 = "SELECT pf1 from trialbsl WHERE Modbus_time BETWEEN %s AND %s"
         data_allday_yesterday = (yesterday_midnight.timestamp(), midnight.timestamp())
         print(f"yesterday time {str(int((yesterday_midnight.timestamp()*1000)))}")
         # data5_m = Meter_id
-        db_cursor.execute("select Total_net_kWh from bokaro_ems.trialbsl where Meter_id = %s and timest between %s and %s" , (Meter_id, str(int((yesterday_midnight.timestamp()*1000) - 500000)), str(int((yesterday_midnight.timestamp()*1000) + 500000)),))
+        db_cursor.execute("select Total_net_kWh from armatric_bsl_db.gmbs_live where Meter_id = %s and timest between %s and %s" , (Meter_id, str(int((yesterday_midnight.timestamp()*1000) - 500000)), str(int((yesterday_midnight.timestamp()*1000) + 500000)),))
         data8 = db_cursor.fetchall()
         print(data8)
 
-        db_cursor.execute("select Total_net_kWh from bokaro_ems.trialbsl where Meter_id = %s and timest between %s and %s",(Meter_id, str(int((midnight.timestamp()*1000) - 500000)), str(int((midnight.timestamp()*1000) + 500000)),))
+        db_cursor.execute("select Total_net_kWh from armatric_bsl_db.gmbs_live where Meter_id = %s and timest between %s and %s",(Meter_id, str(int((midnight.timestamp()*1000) - 500000)), str(int((midnight.timestamp()*1000) + 500000)),))
         data99 = db_cursor.fetchall()
         print(data99)
         db.commit()
@@ -433,11 +433,11 @@ def currentdata():
     response4.content_type = 'application/json'
 
     try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
+        db2 = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
+                                     port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Location from locbsl WHERE Meter_id =%s",(Meter_id,))
+        db2_cursor.execute("SELECT Location from armatric_bsl_db.locbsl WHERE Meter_id =%s",(Meter_id,))
         data88 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
@@ -470,12 +470,12 @@ def currentdata1():
     print(type(Meter_id))
 
     try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
+        db2 = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
+                                     port="3306")
         db2_cursor = db2.cursor()
         db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kW,Total_net_kWh,Total_kVAr,Total_net_kVArh, Total_kVA, Total_net_kVAh from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kW,Total_net_kWh,Total_kVAr,Total_net_kVArh, Total_kVA, Total_net_kVAh from armatric_bsl_db.gmbs_live WHERE Meter_id =%s  and timest between %s and %s",
             (Meter_id, str(int(datetime.now().timestamp() - 3000)), str(int(datetime.now().timestamp())),))
         data7 = db2_cursor.fetchall()
         db2.commit()
@@ -495,19 +495,19 @@ def currentdata1():
     response4.content_type = 'application/json'
 
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
         # stmt1 = "SELECT pf1 from trialbsl WHERE Modbus_time BETWEEN %s AND %s"
         data_allday_yesterday = (yesterday_midnight.timestamp(), midnight.timestamp())
         print(f"yesterday time {str(int((yesterday_midnight.timestamp()*1000)))}")
         # data5_m = Meter_id
-        db_cursor.execute("select Total_net_kWh from bokaro_ems.trialbsl where Meter_id = %s and timest between %s and %s" , (Meter_id, str(int((yesterday_midnight.timestamp()*1000) - 500000)), str(int((yesterday_midnight.timestamp()*1000) + 500000)),))
+        db_cursor.execute("select Total_net_kWh from armatric_bsl_db.gmbs_live where Meter_id = %s and timest between %s and %s" , (Meter_id, str(int((yesterday_midnight.timestamp()*1000) - 500000)), str(int((yesterday_midnight.timestamp()*1000) + 500000)),))
         data8 = db_cursor.fetchall()
         print(data8)
 
-        db_cursor.execute("select Total_net_kWh from bokaro_ems.trialbsl where Meter_id = %s and timest between %s and %s",(Meter_id, str(int((midnight.timestamp()*1000) - 500000)), str(int((midnight.timestamp()*1000) + 500000)),))
+        db_cursor.execute("select Total_net_kWh from armatric_bsl_db.gmbs_live where Meter_id = %s and timest between %s and %s",(Meter_id, str(int((midnight.timestamp()*1000) - 500000)), str(int((midnight.timestamp()*1000) + 500000)),))
         data99 = db_cursor.fetchall()
         print(data99)
         db.commit()
@@ -533,11 +533,11 @@ def currentdata1():
     response4.content_type = 'application/json'
 
     try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
+        db2 = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
+                                     port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Location from locbsl WHERE Meter_id =%s",(Meter_id,))
+        db2_cursor.execute("SELECT Location from armatric_bsl_db.locbsl WHERE Meter_id =%s",(Meter_id,))
         data88 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
@@ -567,12 +567,12 @@ def getPlotCSV():
 
     print("session valid")
     try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
+        db2 = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
+                                     port="3306")
         db2_cursor = db2.cursor()
         db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kW,Total_net_kWh,Total_kVAr,Total_net_kVArh, Total_kVA, Total_net_kVAh from trialbsl WHERE Meter_id =%s  and timest between %s and %s",
+            "SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kW,Total_net_kWh,Total_kVAr,Total_net_kVArh, Total_kVA, Total_net_kVAh from armatric_bsl_db.gmbs_live WHERE Meter_id =%s  and timest between %s and %s",
             (Meter_id, str(int(datetime.now().timestamp() - 3000)), str(int(datetime.now().timestamp())),))
         data18 = db2_cursor.fetchall()
         db2.commit()
@@ -606,12 +606,12 @@ def getexcel():
 
     print("session valid")
     try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
+        db2 = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
+                                     port="3306")
         db2_cursor = db2.cursor()
         db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL, AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1  from trialbsl WHERE Meter_id =%s",
+            "SELECT Modbus_time,AVG_voltage_LL, AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1  from armatric_bsl_db.gmbs_live WHERE Meter_id =%s",
             (Meter_id,))
         data13 = db2_cursor.fetchall()
         db2.commit()
@@ -673,11 +673,11 @@ def historical():
     print(f"{type(start_time)}  {type(end_time)}")
 
     try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
+        db2 = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
+                                     port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kW,Total_net_kWh,Total_kVAr,Total_net_kVArh, Total_kVA, Total_net_kVAh,timest from trialbsl WHERE Meter_id =%s and timest between %s and %s",(meterID_H,start_time,end_time,))
+        db2_cursor.execute("SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kW,Total_net_kWh,Total_kVAr,Total_net_kVArh, Total_kVA, Total_net_kVAh,timest from armatric_bsl_db.gmbs_historical WHERE Meter_id =%s and timest between %s and %s",(meterID_H,start_time,end_time,))
 
         data8 = db2_cursor.fetchall()
         print(data8)
@@ -804,11 +804,11 @@ def historicdwnld():
 
     print("session valid")
     try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
+        db2 = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
+                                     port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute("SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kVA,Total_kW,Total_kVA,Total_net_kVArh, Total_kVA, Total_net_kVAh  from trialbsl WHERE Meter_id =%s and timest between %s and %s",(meterID_H,start_time,end_time))
+        db2_cursor.execute("SELECT Modbus_time,AVG_voltage_LL,Current_i1,Current_i2,Current_i3,AVG_current,Frequency,AVG_pf,THDP1,Total_kVA,Total_kW,Total_kVA,Total_net_kVArh, Total_kVA, Total_net_kVAh  from armatric_bsl_db.gmbs_historical WHERE Meter_id =%s and timest between %s and %s",(meterID_H,start_time,end_time))
         data5 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
@@ -847,12 +847,12 @@ def current_data():
 
     print("session valid")
     try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
+        db2 = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
+                                     port="3306")
         db2_cursor = db2.cursor()
         db2_cursor.execute(
-            "SELECT Modbus_time,AVG_voltage_LL, AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1  from trialbsl WHERE Meter_id =%s",
+            "SELECT Modbus_time,AVG_voltage_LL, AVG_current,THDP1,Total_kVA,AVG_pf,Total_net_kWh,Total_kW,Total_kVA,Frequency,pf1  from armatric_bsl_db.gmbs_live WHERE Meter_id =%s",
             (Meter_id,))
         data7 = db2_cursor.fetchall()
         db2.commit()
@@ -868,11 +868,11 @@ def current_data():
     response4.content_type = 'application/json'
 
     try:
-        db = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                     host="server050641860.mysql.database.azure.com", database="bokaro_ems",
+        db = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
                                      port="3306")
         db_cursor = db.cursor()
-        stmt1 = "SELECT pf1 from trialbsl WHERE Modbus_time BETWEEN %s AND %s"
+        stmt1 = "SELECT pf1 from armatric_bsl_db.gmbs_live WHERE Modbus_time BETWEEN %s AND %s"
         data_allday_yesterday = (yesterday_midnight.timestamp(), midnight.timestamp())
         data5_m = Meter_id
         db_cursor.execute(stmt1, data_allday_yesterday)
@@ -927,11 +927,11 @@ def meterstatus():
 
 
     try:
-        db2 = mysql.connector.connect(user="ajarcake4", password="xJkuyOKBizuim9M42mukRA",
-                                      host="server050641860.mysql.database.azure.com", database="bokaro_ems",
-                                      port="3306")
+        db2 = mysql.connector.connect(user="armatric_bsl_ems", password="xJkuyOKBizuim9M42mukRA",
+                                     host="armatrics.com.in", database="armatric_bsl_db",
+                                     port="3306")
         db2_cursor = db2.cursor()
-        db2_cursor.execute("select AVG_current From trialbsl where Meter_id ='GMBS C03_10D' and timest between %s and %s",(stm,stme,))
+        db2_cursor.execute("select AVG_current From armatric_bsl_db.gmbs_live where Meter_id ='GMBS C03_10D' and timest between %s and %s",(stm,stme,))
                            #"timest between %s and %s",(stm,stme,))
         data2 = db2_cursor.fetchall()
 
@@ -953,7 +953,7 @@ def meterstatus():
 
 
         db2_cursor.execute(
-            "select AVG_current From trialbsl where Meter_id ='GMBS C05_08D' and timest between %s and %s",(stm,stme,))
+            "select AVG_current From armatric_bsl_db.gmbs_live where Meter_id ='GMBS C05_08D' and timest between %s and %s",(stm,stme,))
         data2 = db2_cursor.fetchall()
 
         d1_values = pd.DataFrame(data2)
@@ -974,7 +974,7 @@ def meterstatus():
     try:
 
         db2_cursor.execute(
-            "select AVG_current From trialbsl where Meter_id ='GMBS C06_09D' and timest between %s and %s",(stm,stme,))
+            "select AVG_current From armatric_bsl_db.gmbs_live where Meter_id ='GMBS C06_09D' and timest between %s and %s",(stm,stme,))
         data2 = db2_cursor.fetchall()
 
         d1_values = pd.DataFrame(data2)
@@ -993,7 +993,7 @@ def meterstatus():
     try:
 
         db2_cursor.execute(
-            "select AVG_current From trialbsl where Meter_id ='GMBS C08_16D' and timest between %s and %s",(stm,stme,))
+            "select AVG_current From armatric_bsl_db.gmbs_live where Meter_id ='GMBS C08_16D' and timest between %s and %s",(stm,stme,))
         data2 = db2_cursor.fetchall()
 
         d1_values = pd.DataFrame(data2)
@@ -1013,7 +1013,7 @@ def meterstatus():
     try:
 
         db2_cursor.execute(
-            "select AVG_current From trialbsl where Meter_id ='GMBS C09_13D' and timest between %s and %s",(stm,stme,))
+            "select AVG_current From armatric_bsl_db.gmbs_live where Meter_id ='GMBS C09_13D' and timest between %s and %s",(stm,stme,))
         data2 = db2_cursor.fetchall()
 
         d1_values = pd.DataFrame(data2)
@@ -1033,7 +1033,7 @@ def meterstatus():
     try:
 
         db2_cursor.execute(
-            "select AVG_current From trialbsl where Meter_id ='GMBS C18_14D' and timest between %s and %s",(stm,stme,))
+            "select AVG_current From armatric_bsl_db.gmbs_live where Meter_id ='GMBS C18_14D' and timest between %s and %s",(stm,stme,))
         data2 = db2_cursor.fetchall()
 
         d1_values = pd.DataFrame(data2)
@@ -1053,7 +1053,7 @@ def meterstatus():
     try:
 
         db2_cursor.execute(
-            "select AVG_current From trialbsl where Meter_id ='GMBS C19_17D' and timest between %s and %s",(stm,stme,))
+            "select AVG_current From armatric_bsl_db.gmbs_live where Meter_id ='GMBS C19_17D' and timest between %s and %s",(stm,stme,))
         data2 = db2_cursor.fetchall()
 
         d1_values = pd.DataFrame(data2)
@@ -1073,7 +1073,7 @@ def meterstatus():
     try:
 
         db2_cursor.execute(
-            "select AVG_current From trialbsl where Meter_id ='GMBS C20_18D' and timest between %s and %s",(stm,stme,))
+            "select AVG_current From armatric_bsl_db.gmbs_live where Meter_id ='GMBS C20_18D' and timest between %s and %s",(stm,stme,))
         data2 = db2_cursor.fetchall()
 
         d1_values = pd.DataFrame(data2)
@@ -1092,7 +1092,7 @@ def meterstatus():
         print("line92")
     try:
 
-        db2_cursor.execute("select AVG_current From trialbsl where Meter_id ='GMBS C21_11D' and timest between %s and %s",(stm,stme,))
+        db2_cursor.execute("select AVG_current From armatric_bsl_db.gmbs_live where Meter_id ='GMBS C21_11D' and timest between %s and %s",(stm,stme,))
         data2 = db2_cursor.fetchall()
 
         d1_values = pd.DataFrame(data2)
@@ -1112,7 +1112,7 @@ def meterstatus():
     try:
 
         db2_cursor.execute(
-            "select AVG_current From trialbsl where Meter_id ='GMBS C24_12D' and timest between %s and %s",(stm,stme,))
+            "select AVG_current From armatric_bsl_db.gmbs_live where Meter_id ='GMBS C24_12D' and timest between %s and %s",(stm,stme,))
         data2 = db2_cursor.fetchall()
 
         d1_values = pd.DataFrame(data2)
@@ -1132,7 +1132,7 @@ def meterstatus():
     try:
 
         db2_cursor.execute(
-            "select AVG_current From trialbsl where Meter_id ='GMBS C27_15D' and timest between %s and %s",(stm,stme,))
+            "select AVG_current From armatric_bsl_db.gmbs_live where Meter_id ='GMBS C27_15D' and timest between %s and %s",(stm,stme,))
         data2 = db2_cursor.fetchall()
         db2.commit()
         db2.close()
@@ -1220,3 +1220,4 @@ def logout():
     return render_template('login.html')
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
+
